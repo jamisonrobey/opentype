@@ -2,32 +2,190 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Serika Dark theme */
+.serika-dark {
+  --bg-color: #323437;
+  --accent-color: #ffb454;
+  --title-color: #e2e2e3;
+  --text-color: #646669;
+  --border-color: #1e1f21;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Dracula theme */
+.dracula {
+  --bg-color: #282a36;
+  --accent-color: #ff79c6;
+  --title-color: #f8f8f2;
+  --text-color: #6272a4;
+  --border-color: #1a1c23;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Solarized Dark theme */
+.solarized-dark {
+  --bg-color: #002b36;
+  --accent-color: #cb4b16;
+  --title-color: #93a1a1;
+  --text-color: #839496;
+  --border-color: #001f27;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Monokai theme */
+.monokai {
+  --bg-color: #272822;
+  --accent-color: #f92672;
+  --title-color: #f8f8f2;
+  --text-color: #a6e22e;
+  --border-color: #1e1e1a;
+}
+
+/* One Dark theme */
+.one-dark {
+  --bg-color: #282c34;
+  --accent-color: #e5c07b;
+  --title-color: #abb2bf;
+  --text-color: #7f848e;
+  --border-color: #1c1f24;
+}
+
+/* Gruvbox Dark theme */
+.gruvbox-dark {
+  --bg-color: #282828;
+  --accent-color: #fe8019;
+  --title-color: #ebdbb2;
+  --text-color: #a89984;
+  --border-color: #1d2021;
+}
+
+/* Nord theme */
+.nord {
+  --bg-color: #2e3440;
+  --accent-color: #88c0d0;
+  --title-color: #eceff4;
+  --text-color: #d8dee9;
+  --border-color: #242933;
+}
+
+/* Oceanic Next theme */
+.oceanic-next {
+  --bg-color: #1b2b34;
+  --accent-color: #fac863;
+  --title-color: #c0c5ce;
+  --text-color: #65737e;
+  --border-color: #121e23;
+}
+
+/* Panda theme */
+.panda {
+  --bg-color: #292a2b;
+  --accent-color: #ff9ac1;
+  --title-color: #e6e6e6;
+  --text-color: #ff4b82;
+  --border-color: #1d1e1e;
+}
+
+/* Shades of Purple theme */
+.shades-of-purple {
+  --bg-color: #2d2b55;
+  --accent-color: #fad000;
+  --title-color: #a599e9;
+  --text-color: #9e99d1;
+  --border-color: #22213f;
+}
+
+/* Material Darker theme */
+.material-darker {
+  --bg-color: #212121;
+  --accent-color: #ff9800;
+  --title-color: #eeeeee;
+  --text-color: #9e9e9e;
+  --border-color: #161616;
+}
+
+/* Night Owl theme */
+.night-owl {
+  --bg-color: #011627;
+  --accent-color: #7fdbca;
+  --title-color: #82aaff;
+  --text-color: #637777;
+  --border-color: #01111e;
+}
+
+/* Railscasts theme */
+.railscasts {
+  --bg-color: #2b2b2b;
+  --accent-color: #da4939;
+  --title-color: #f4f1ed;
+  --text-color: #e6e1dc;
+  --border-color: #1f1f1f;
+}
+
+/* Seti theme */
+.seti {
+  --bg-color: #151718;
+  --accent-color: #8ec07c;
+  --title-color: #d6d6d6;
+  --text-color: #43454b;
+  --border-color: #0d0e0e;
+}
+
+/* Snazzy theme */
+.snazzy {
+  --bg-color: #282a36;
+  --accent-color: #ff6ac1;
+  --title-color: #eff0eb;
+  --text-color: #a5a5a9;
+  --border-color: #1a1c23;
+}
+
+/* Cobalt2 theme */
+.cobalt2 {
+  --bg-color: #193549;
+  --accent-color: #ffc600;
+  --title-color: #ffffff;
+  --text-color: #9cc4e5;
+  --border-color: #0f2130;
+}
+
+.light-plus {
+  --bg-color: #ffffff;
+  --accent-color: #0066b8;
+  --title-color: #000000;
+  --text-color: #333333;
+  --border-color: #e5e5e5;
+}
+
+/* Solarized Light theme */
+.solarized-light {
+  --bg-color: #fdf6e3;
+  --accent-color: #268bd2;
+  --title-color: #073642;
+  --text-color: #586e75;
+  --border-color: #eee8d5;
+}
+
+/* Atom One Light theme */
+.atom-one-light {
+  --bg-color: #fafafa;
+  --accent-color: #2979ff;
+  --title-color: #383a42;
+  --text-color: #383a42;
+  --border-color: #e5e5e5;
+}
+
+/* GitHub Light theme */
+.github-light {
+  --bg-color: #ffffff;
+  --accent-color: #0366d6;
+  --title-color: #24292e;
+  --text-color: #24292e;
+  --border-color: #e1e4e8;
+}
+
+/* Xcode Light theme */
+.xcode-light {
+  --bg-color: #ffffff;
+  --accent-color: #ff5f00;
+  --title-color: #000000;
+  --text-color: #333333;
+  --border-color: #e5e5e5;
 }
