@@ -39,7 +39,7 @@ const ThemeSwitch = () => {
   return (
     <>
       <button
-        className="px-4 py-2 rounded text-[var(--text-color)] hover:text-[var(--title-color)]"
+        className="rounded text-[var(--text-color)] hover:text-[var(--title-color)]"
         onClick={() => setIsOpen(true)}
       >
         Change Theme

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
-
 import "./globals.css";
+import Header from "@/components/Header";
 
 const roboto_mono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -17,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto_mono.className}>{children}</body>
+      <body
+        className={`${roboto_mono.className} transition-colors duration-300 ease-in-out flex items-center flex-col w-full`}
+      >
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
