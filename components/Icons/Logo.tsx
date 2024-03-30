@@ -1,11 +1,17 @@
 import Link from "next/link";
+import { Lexend_Deca } from "next/font/google";
+
+const lexend_deca = Lexend_Deca({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const Logo = () => {
   return (
-    <div className="flex items-center flex-grow justify-start space-x-4 ">
+    <div className="flex items-center flex-grow justify-start space-x-2 ">
       <svg
         viewBox="-680 -1030 300 180"
-        className="isolate w-16 h-16 mt-10 stroke-[var(--accent-color)] fill-[var(--accent-color)]"
+        className="isolate w-10 h-10 items-center mt-7 stroke-[var(--accent-color)] fill-[var(--accent-color)]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g>
@@ -26,17 +32,18 @@ const Logo = () => {
           ry="28.202"
         />
       </svg>
-      <div className="flex justify-center flex-col">
-        <p className="text-sm text-right text-[var(--text-color)]">
-          Clone of{" "}
+      <div
+        className={` ${lexend_deca.className}  flex justify-center flex-col`}
+      >
+        <p className="relative text-left ml-0.5  top-3 text-[var(--text-color)]">
           <Link
-            className="hover:text-[var(--title-color)]"
+            className="hover:text-[var(--title-color)] text-[10px]"
             href="https://monkeytype.com"
           >
-            monkeytype
+            clone (monkeytype)
           </Link>
         </p>
-        <h1 className="text-6xl">opentype</h1>
+        <h1 className="text-3xl ">opentype</h1>
       </div>
     </div>
   );
