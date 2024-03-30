@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  --bg-color: #323437;
+  --accent-color: #e2b714;
+  --title-color: #d1d0c5;
+  --text-color: #646669;
+  --border-color: #1e1f21;
+}
+
 /* Serika Dark theme */
 .serika-dark {
   --bg-color: #323437;
