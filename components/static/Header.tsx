@@ -7,7 +7,7 @@ import {
   KeyboardIcon,
 } from "@radix-ui/react-icons";
 
-import Logo from "./Icons/Logo";
+import Logo from "./Logo";
 
 const Header = () => {
   return (
