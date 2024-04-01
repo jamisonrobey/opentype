@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto_mono.className} transition-colors duration-300 ease-in-out flex items-center flex-col w-full`}
+        className={`${roboto_mono.className} duration-300 ease-in-out bg-[var(--bg-color)] flex items-center flex-col`}
       >
         <Header />
         {children}
