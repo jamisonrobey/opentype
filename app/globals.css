@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
