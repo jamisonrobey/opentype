@@ -1,6 +1,6 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { TextIcon, CountdownTimerIcon, QuoteIcon } from "@radix-ui/react-icons";
-import { useTypingMode } from "../TypingModeContext";
+import { useMode } from "../ModeContext";
 import { WordsTimeQuote } from "../types";
 interface WordsTimeQuoteSelectorProps {
   onChange: (selected: WordsTimeQuote) => void;
@@ -9,7 +9,7 @@ interface WordsTimeQuoteSelectorProps {
 export const WordsTimeQuoteSelector: React.FC<WordsTimeQuoteSelectorProps> = ({
   onChange,
 }) => {
-  const { selectedWordsTimeQuote } = useTypingMode();
+  const { selectedWordsTimeQuote } = useMode();
 
   const handleChange = (value: string) => {
     onChange(value as WordsTimeQuote);

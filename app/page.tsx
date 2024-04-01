@@ -1,9 +1,9 @@
 import ThemeSwitch from "@/components/ThemeSwitcher/ThemeSwitch";
-import { TestContainer } from "@/components/TypingTest/TestContainer";
+import { GameContainer } from "@/components/Game/GameContainer";
 export default async function Home() {
   return (
     <div className="min-h-screen flex w-full flex-col items-center bg-[var(--bg-color)] text-[var(--text-color)] ">
-      <TestContainer />
+      <GameContainer />
       <br></br>
       <br></br>
       <br></br>

@@ -1,10 +1,10 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { QuoteLength, WordsLength, TimeLength } from "../types";
-import { useTypingMode } from "../TypingModeContext";
+import { useMode } from "../ModeContext";
 
 export const LengthSelector: React.FC = () => {
   const { selectedWordsTimeQuote, selectedLength, setSelectedLength } =
-    useTypingMode();
+    useMode();
 
   const handleChange = (value: string) => {
     if (selectedWordsTimeQuote === "quote") {

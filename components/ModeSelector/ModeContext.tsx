@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { WordsTimeQuote, PunctuationNumbers, Length } from "./types";
 
-interface TypingModeContextProps {
+interface ModeContextProps {
   selectedPunctuationNumbers: PunctuationNumbers[];
   setSelectedPunctuationNumbers: React.Dispatch<
     React.SetStateAction<PunctuationNumbers[]>
@@ -16,24 +16,20 @@ interface TypingModeContextProps {
   setShowPunctuationNumbers: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TypingModeContext = createContext<TypingModeContextProps | undefined>(
-  undefined
-);
+const ModeContext = createContext<ModeContextProps | undefined>(undefined);
 
-export const useTypingMode = () => {
-  const context = useContext(TypingModeContext);
+export const useMode = () => {
+  const context = useContext(ModeContext);
   if (!context) {
     throw new Error("useTypingMode must be used within a TypingModeProvider");
   }
   return context;
 };
 
-interface TypingModeProvider {
+interface ModeProviderProps {
   children: React.ReactNode;
 }
-export const TypingModeProvider: React.FC<TypingModeProvider> = ({
-  children,
-}) => {
+export const ModeProvider: React.FC<ModeProviderProps> = ({ children }) => {
   const [selectedPunctuationNumbers, setSelectedPunctuationNumbers] = useState<
     PunctuationNumbers[]
   >([]);
@@ -53,9 +49,5 @@ export const TypingModeProvider: React.FC<TypingModeProvider> = ({
     setShowPunctuationNumbers,
   };
 
-  return (
-    <TypingModeContext.Provider value={value}>
-      {children}
-    </TypingModeContext.Provider>
-  );
+  return <ModeContext.Provider value={value}>{children}</ModeContext.Provider>;
 };

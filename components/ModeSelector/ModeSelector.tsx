@@ -1,11 +1,11 @@
-import { useTypingMode } from "./TypingModeContext";
+import { useMode } from "./ModeContext";
 import { WordsTimeQuote } from "./types";
 import { WordsTimeQuoteSelector } from "./selectors/WordsTimeQuoteSelector";
 import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelector";
 import { getDefaultLengthForMode } from "@/utils/getDefaultLength";
 import { LengthSelector } from "./selectors/LengthSelector";
 
-export const TypingModeSelector = () => {
+export const ModeSelector = () => {
   const {
     selectedWordsTimeQuote,
     setSelectedPunctuationNumbers,
@@ -13,7 +13,7 @@ export const TypingModeSelector = () => {
     setSelectedLength,
     showPunctuationNumbers,
     setShowPunctuationNumbers,
-  } = useTypingMode();
+  } = useMode();
 
   const handleWordsTimeQuoteChange = (selected: WordsTimeQuote) => {
     setSelectedWordsTimeQuote(selected);

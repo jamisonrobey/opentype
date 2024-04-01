@@ -1,4 +1,4 @@
-import { WordsTimeQuote } from "@/components/TypingTest/TypingModeSelector/types";
+import { WordsTimeQuote } from "@/components/ModeSelector/types";
 
 export const getDefaultLengthForMode = (mode: WordsTimeQuote) => {
   switch (mode) {

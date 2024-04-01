@@ -2,11 +2,11 @@ import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { PunctuationNumbers } from "../types";
 import { TextIcon } from "@radix-ui/react-icons";
 import { HashIcon } from "@/components/static/HashIcon";
-import { useTypingMode } from "../TypingModeContext";
+import { useMode } from "../ModeContext";
 
 export const PunctuationNumbersSelector: React.FC = () => {
   const { selectedPunctuationNumbers, setSelectedPunctuationNumbers } =
-    useTypingMode();
+    useMode();
 
   const handleChange = (value: string[]) => {
     setSelectedPunctuationNumbers(value as PunctuationNumbers[]);
