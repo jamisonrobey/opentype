@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+}
+
 body {
   --bg-color: #323437;
   --accent-color: #e2b714;
@@ -17,6 +21,8 @@ body {
   --title-color: #d1d0c5;
   --text-color: #646669;
   --border-color: #1e1f21;
+  --bgDark-color: #2c2e31;
+  --darkAccent-color: #323437;
 }
 
 /* Dracula theme */
