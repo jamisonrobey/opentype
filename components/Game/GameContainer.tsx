@@ -7,7 +7,7 @@ import { Game } from "./Game";
 export const GameContainer = () => {
   return (
     <ModeProvider>
-      <div className="flex flex-col w-full items-center">
+      <div className="flex flex-col space-y-16 w-full items-center">
         <ModeSelector />
         <GameContextProvider>
           <Game />
