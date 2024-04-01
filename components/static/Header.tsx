@@ -11,7 +11,7 @@ import Logo from "./Logo";
 
 const Header = () => {
   return (
-    <div className="flex w-3/4 items-center justify-between bg-[var(--bg-color)] text-[var(--title-color)]">
+    <div className="flex md:w-3/4 items-center justify-between bg-[var(--bg-color)] text-[var(--title-color)]">
       <div className=" flex-grow flex items-center h-36 justify-between ">
         <div className="w-2/6 mr-4 ">
           <Logo />

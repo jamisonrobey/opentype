@@ -11,7 +11,7 @@ const Logo = () => {
     <div className="flex items-center flex-grow justify-start space-x-2 ">
       <svg
         viewBox="-680 -1030 300 180"
-        className="isolate w-10 h-10 items-center mt-8 stroke-[var(--accent-color)] fill-[var(--accent-color)]"
+        className="isolate invisible lg:visible w-10 h-10 items-center mt-8 stroke-[var(--accent-color)] fill-[var(--accent-color)]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g>
@@ -32,9 +32,7 @@ const Logo = () => {
           ry="28.202"
         />
       </svg>
-      <div
-        className={` ${lexend_deca.className}  flex justify-center flex-col`}
-      >
+      <div className={` ${lexend_deca.className} flex justify-center flex-col`}>
         <p className="relative text-left ml-0.5  top-3 text-[var(--text-color)]">
           <Link
             className="hover:text-[var(--title-color)] text-[10px]"

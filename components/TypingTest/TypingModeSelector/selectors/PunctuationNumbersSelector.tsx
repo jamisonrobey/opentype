@@ -14,7 +14,7 @@ export const PunctuationNumbersSelector: React.FC = () => {
 
   return (
     <ToggleGroup.Root
-      className="flex items-center justify-evenly sm:space-x-4"
+      className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 items-center justify-evenly sm:space-x-4"
       aria-label="Punctuation and Numbers"
       type="multiple"
       value={selectedPunctuationNumbers}
