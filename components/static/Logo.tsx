@@ -11,7 +11,7 @@ const Logo = () => {
     <div className="flex items-center flex-grow justify-start space-x-2 ">
       <svg
         viewBox="-680 -1030 300 180"
-        className="isolate w-10 h-10 items-center mt-7 stroke-[var(--accent-color)] fill-[var(--accent-color)]"
+        className="isolate w-10 h-10 items-center mt-8 stroke-[var(--accent-color)] fill-[var(--accent-color)]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g>
@@ -43,7 +43,7 @@ const Logo = () => {
             clone (monkeytype)
           </Link>
         </p>
-        <h1 className="text-3xl ">opentype</h1>
+        <h1 className="text-4xl ">opentype</h1>
       </div>
     </div>
   );

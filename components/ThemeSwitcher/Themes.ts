@@ -6,6 +6,8 @@ const themes = [
     titleColor: "#e2e2e3",
     textColor: "#646669",
     borderColor: "#1e1f21",
+    bgDark: "#2c2e31",
+    darkAccentColor: "#323437",
   },
   {
     name: "dracula",
