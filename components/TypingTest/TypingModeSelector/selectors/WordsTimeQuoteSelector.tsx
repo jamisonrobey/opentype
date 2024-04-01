@@ -24,7 +24,7 @@ export const WordsTimeQuoteSelector: React.FC<WordsTimeQuoteSelectorProps> = ({
       onValueChange={handleChange}
     >
       <ToggleGroup.Item
-        className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
+        className=" px-2 py-1  hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
         value="words"
         disabled={selectedWordsTimeQuote === "words"}
       >
@@ -32,7 +32,7 @@ export const WordsTimeQuoteSelector: React.FC<WordsTimeQuoteSelectorProps> = ({
         <p>words</p>
       </ToggleGroup.Item>
       <ToggleGroup.Item
-        className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
+        className=" px-2 py-1  hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
         value="time"
         disabled={selectedWordsTimeQuote === "time"}
       >
@@ -40,7 +40,7 @@ export const WordsTimeQuoteSelector: React.FC<WordsTimeQuoteSelectorProps> = ({
         <p>time</p>
       </ToggleGroup.Item>
       <ToggleGroup.Item
-        className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
+        className=" px-2 py-1 hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
         value="quote"
         disabled={selectedWordsTimeQuote === "quote"}
       >

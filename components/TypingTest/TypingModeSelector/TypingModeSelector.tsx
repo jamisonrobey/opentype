@@ -8,6 +8,7 @@ import { LengthSelector } from "./selectors/LengthSelector";
 export const TypingModeSelector = () => {
   const {
     selectedWordsTimeQuote,
+    setSelectedPunctuationNumbers,
     setSelectedWordsTimeQuote,
     setSelectedLength,
     showPunctuationNumbers,
@@ -17,31 +18,37 @@ export const TypingModeSelector = () => {
   const handleWordsTimeQuoteChange = (selected: WordsTimeQuote) => {
     setSelectedWordsTimeQuote(selected);
     setSelectedLength(getDefaultLengthForMode(selected));
-    setShowPunctuationNumbers(selected !== "quote");
+
+    if (selected === "quote") {
+      setShowPunctuationNumbers(false);
+      setSelectedPunctuationNumbers([]);
+    } else {
+      setShowPunctuationNumbers(true);
+    }
   };
 
   return (
     <div className="w-full flex justify-center">
       <div
-        className={`flex p-2.5 text-xs items-center justify-evenly w-2/4 rounded-lg bg-[var(--bgDark-color)]`}
+        className={`flex p-2.5 text-xs items-center justify-evenly w-8/10 2xl:w-2/5 rounded-lg bg-[var(--bgDark-color)]`}
       >
         <div
           className={`${
             showPunctuationNumbers ? "flex-grow" : "flex-grow-0 w-0 opacity-0"
-          } transition-spacing duration-300 ease-in-out`}
+          } transition-all duration-300 ease-linear transition-width `}
         >
           <PunctuationNumbersSelector />
         </div>
         <div
           className={`${
-            showPunctuationNumbers ? "w-[3px]" : "w-0"
-          } mx-4 bg-[var(--darkAccent-color)] h-2/3 transition-spacing duration-300 ease-in-out`}
+            showPunctuationNumbers ? "w-[3]px]" : "w-0"
+          } mx-4 bg-[var(--darkAccent-color)] h-2/3 duration-300 transition-all ease-linear transition-width delay-200`}
         ></div>
-        <div className="flex-grow transition-spacing duration-300 ease-in-out">
+        <div className="flex-grow transition-spacing duration-300 ease-linear">
           <WordsTimeQuoteSelector onChange={handleWordsTimeQuoteChange} />
         </div>
         <div className="w-[3px] mx-4 bg-[var(--darkAccent-color)] h-2/3"></div>
-        <div className="flex-grow transition-spacing duration-300 ease-in-out">
+        <div className="flex-grow transition-all duration-300 ease-linear">
           <LengthSelector />
         </div>
       </div>
