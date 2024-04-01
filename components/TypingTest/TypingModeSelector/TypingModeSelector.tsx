@@ -3,6 +3,7 @@ import { WordsTimeQuote } from "./types";
 import { WordsTimeQuoteSelector } from "./selectors/WordsTimeQuoteSelector";
 import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelector";
 import { getDefaultLengthForMode } from "@/utils/getDefaultLength";
+import { LengthSelector } from "./selectors/LengthSelector";
 
 export const TypingModeSelector = () => {
   const {
@@ -41,7 +42,7 @@ export const TypingModeSelector = () => {
         </div>
         <div className="w-[3px] mx-4 bg-[var(--darkAccent-color)] h-2/3"></div>
         <div className="flex-grow transition-spacing duration-300 ease-in-out">
-          <WordsTimeQuoteSelector onChange={handleWordsTimeQuoteChange} />
+          <LengthSelector />
         </div>
       </div>
     </div>
