@@ -1,8 +1,10 @@
 import { useRef, useEffect, useState } from "react";
-import { useGameContext } from "./GameContext";
+import { useGameContext } from "./context/GameContext";
+import { Timer } from "./Timer";
 
 export const Game: React.FC = () => {
-  const { words, userInput, handleInputChange, typedWords } = useGameContext();
+  const { words, userInput, typedWords, handleInputChange } = useGameContext();
+
   const cursorRef = useRef<HTMLSpanElement>(null);
   const [cursorPosition, setCursorPosition] = useState({ left: 0, top: 0 });
 
@@ -50,7 +52,8 @@ export const Game: React.FC = () => {
 
   return (
     <div className="w-3/4">
-      <div className="text-3xl mb-4 h-28 overflow-auto no-scrollbar relative">
+      <Timer />
+      <div className="text-2xl mb-4 h-24 overflow-auto no-scrollbar relative">
         {words.map((word, wordIndex) => (
           <span
             key={wordIndex}
