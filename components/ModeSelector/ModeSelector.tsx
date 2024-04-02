@@ -1,4 +1,4 @@
-import { useMode } from "./ModeContext";
+import { useMode } from "./context/ModeContext";
 import { WordsTimeQuote } from "./types";
 import { WordsTimeQuoteSelector } from "./selectors/WordsTimeQuoteSelector";
 import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelector";
