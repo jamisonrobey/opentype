@@ -8,9 +8,9 @@ export const HashIcon = () => {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       aria-labelledby="hashIconTitle"
-      stroke-width="1"
-      stroke-linecap="square"
-      stroke-linejoin="miter"
+      strokeWidth={1}
+      strokeLinecap="square"
+      strokeLinejoin="miter"
       fill="none"
       color="#000000"
     >
