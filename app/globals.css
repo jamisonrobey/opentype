@@ -6,6 +6,7 @@
   margin: 0;
 }
 
+/* Custom TailwindCSS classes */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -27,6 +28,8 @@
   transition-property: width;
   transition-duration: 100ms;
 }
+
+/* Custom TailwindCSS classes */
 
 body {
   --bg-color: #323437;
