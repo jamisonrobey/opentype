@@ -1,12 +1,34 @@
-import { useRef, useEffect, useState } from "react";
-import { useGameContext } from "./context/GameContext";
+"use client";
+import { useEffect, useState } from "react";
+import { useTypingTest } from "./context/TypingTestContext";
 import { Timer } from "./Timer";
 
-export const Game: React.FC = () => {
-  const { words, userInput, typedWords, handleInputChange } = useGameContext();
+export const TestBody = () => {
+  const {
+    gameStarted,
+    setGameStarted,
+    setTypedWords,
+    setUserInput,
+    words,
+    userInput,
+    typedWords,
+    resetTest,
+  } = useTypingTest();
 
-  const cursorRef = useRef<HTMLSpanElement>(null);
   const [cursorPosition, setCursorPosition] = useState({ left: 0, top: 0 });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    if (!gameStarted) {
+      setGameStarted(true);
+    }
+    if (value.endsWith(" ")) {
+      setTypedWords([...typedWords, value.trim()]);
+      setUserInput("");
+    } else {
+      setUserInput(value);
+    }
+  };
 
   useEffect(() => {
     const currentWordIndex = typedWords.length;
@@ -24,7 +46,6 @@ export const Game: React.FC = () => {
     const charEl = currentWordEl?.children[
       currentCharIndex
     ] as HTMLElement | null;
-
     if (charEl) {
       const newPosition = {
         left: charEl.offsetLeft,
@@ -43,15 +64,8 @@ export const Game: React.FC = () => {
     }
   }, [userInput, typedWords, words]);
 
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      cursorRef.current?.style.setProperty("left", `${cursorPosition.left}px`);
-      cursorRef.current?.style.setProperty("top", `${cursorPosition.top}px`);
-    });
-  }, [cursorPosition]);
-
   return (
-    <div className="w-3/4">
+    <div className={`w-3/4 space-y-4`}>
       <Timer />
       <div className="text-2xl mb-4 h-24 overflow-auto no-scrollbar relative">
         {words.map((word, wordIndex) => (
@@ -86,15 +100,18 @@ export const Game: React.FC = () => {
           </span>
         ))}
         <span
-          ref={cursorRef}
-          className="border-r border-r-[var(--accent-color)] h-[1.5em] absolute transition-all ease-linear duration-[0.05s]"
+          className={`border-r border-r-[var(--accent-color)] h-[1.5em] absolute transition-all ease-linear duration-[0.1s]`}
+          style={{
+            left: `${cursorPosition.left}px`,
+            top: `${cursorPosition.top}px`,
+          }}
         />
       </div>
       <input
         type="text"
         value={userInput}
         onChange={handleInputChange}
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+        className="w-full"
       />
     </div>
   );

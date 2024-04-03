@@ -1,26 +1,22 @@
-import { useMode } from "./context/ModeContext";
-import { WordsTimeQuote } from "./types";
+"use client";
+import { useState } from "react";
+import { useTypingTest } from "../TypingTest/context/TypingTestContext";
+import { GameMode } from "../TypingTest/types";
 import { WordsTimeQuoteSelector } from "./selectors/WordsTimeQuoteSelector";
 import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelector";
 import { getDefaultLengthForMode } from "@/utils/getDefaultLength";
 import { LengthSelector } from "./selectors/LengthSelector";
 
 export const ModeSelector = () => {
-  const {
-    selectedWordsTimeQuote,
-    setSelectedPunctuationNumbers,
-    setSelectedWordsTimeQuote,
-    setSelectedLength,
-    showPunctuationNumbers,
-    setShowPunctuationNumbers,
-  } = useMode();
+  const { setIncludePuncNums, setGameMode, setDuration } = useTypingTest();
 
-  const handleWordsTimeQuoteChange = (selected: WordsTimeQuote) => {
-    setSelectedWordsTimeQuote(selected);
-    setSelectedLength(getDefaultLengthForMode(selected));
+  const [showPunctuationNumbers, setShowPunctuationNumbers] = useState(true);
+  const handleModeChange = (selected: GameMode) => {
+    setGameMode(selected);
+    setDuration(getDefaultLengthForMode(selected));
     if (selected === "quote") {
       setShowPunctuationNumbers(false);
-      setSelectedPunctuationNumbers([]);
+      setIncludePuncNums([]);
     } else {
       setShowPunctuationNumbers(true);
     }
@@ -52,7 +48,7 @@ export const ModeSelector = () => {
           }`}
         ></div>
         <div className="flex-grow">
-          <WordsTimeQuoteSelector onChange={handleWordsTimeQuoteChange} />
+          <WordsTimeQuoteSelector onChange={handleModeChange} />
         </div>
         <div className="w-[3px] mx-4 bg-[var(--darkAccent-color)] h-2/3"></div>
         <div className="flex-grow">

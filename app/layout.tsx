@@ -18,10 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto_mono.className} duration-300 ease-in-out bg-[var(--bg-color)] flex items-center flex-col`}
+        className={`${roboto_mono.className} duration-300 min-h-screen ease-in-out bg-[var(--bg-color)] flex  justify-evenly items-center flex-col`}
       >
         <Header />
         {children}
+        <Header />
       </body>
     </html>
   );

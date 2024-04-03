@@ -1,22 +1,23 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { QuoteLength, WordsLength, TimeLength } from "../types";
-import { useMode } from "../ModeContext";
+import { Duration } from "@/components/TypingTest/types";
+import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
 
 export const LengthSelector: React.FC = () => {
-  const { selectedWordsTimeQuote, selectedLength, setSelectedLength } =
-    useMode();
+  const { gameMode, duration, setDuration } = useTypingTest();
 
   const handleChange = (value: string) => {
-    if (selectedWordsTimeQuote === "quote") {
-      setSelectedLength(value as QuoteLength);
+    if (gameMode === "quote") {
+      setDuration(value as Duration);
+    } else if (gameMode == "time") {
+      setDuration(parseInt(value, 10) as Duration);
     } else {
-      setSelectedLength(parseInt(value, 10) as WordsLength | TimeLength);
+      setDuration(parseInt(value, 10) as Duration);
     }
   };
 
   let lengthOptions: JSX.Element[] = [];
 
-  if (selectedWordsTimeQuote === "words") {
+  if (gameMode === "words") {
     lengthOptions = [10, 25, 50, 100].map((length) => (
       <ToggleGroup.Item
         key={length}
@@ -26,7 +27,7 @@ export const LengthSelector: React.FC = () => {
         {length}
       </ToggleGroup.Item>
     ));
-  } else if (selectedWordsTimeQuote === "time") {
+  } else if (gameMode === "time") {
     lengthOptions = [15, 30, 60, 120].map((length) => (
       <ToggleGroup.Item
         key={length}
@@ -36,7 +37,7 @@ export const LengthSelector: React.FC = () => {
         {length}
       </ToggleGroup.Item>
     ));
-  } else if (selectedWordsTimeQuote === "quote") {
+  } else if (gameMode === "quote") {
     lengthOptions = ["all", "short", "medium", "long"].map((length) => (
       <ToggleGroup.Item
         key={length}
@@ -53,7 +54,7 @@ export const LengthSelector: React.FC = () => {
       className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 items-center justify-evenly sm:space-x-4"
       aria-label="Length"
       type="single"
-      value={selectedLength.toString()}
+      value={duration.toString()}
       onValueChange={handleChange}
     >
       {lengthOptions}

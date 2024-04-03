@@ -29,6 +29,27 @@
   transition-duration: 100ms;
 }
 
+/* Simulate blinking of input cursor */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.input-cursor {
+  @apply border-r-2 border-r-[var(--accent-color)] h-[1.5em] absolute;
+  animation: blink 1s step-end infinite;
+  animation-play-state: running; /* Start the animation initially */
+}
+
+.input-cursor.not-focused {
+  animation-play-state: paused; /* Pause the animation when not focused */
+}
+
 /* Custom TailwindCSS classes */
 
 body {

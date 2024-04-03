@@ -1,15 +1,14 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { PunctuationNumbers } from "../types";
+import { IncludePuncNums } from "@/components/TypingTest/types";
 import { TextIcon } from "@radix-ui/react-icons";
 import { HashIcon } from "@/components/static/HashIcon";
-import { useMode } from "../ModeContext";
+import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
 
 export const PunctuationNumbersSelector: React.FC = () => {
-  const { selectedPunctuationNumbers, setSelectedPunctuationNumbers } =
-    useMode();
+  const { includePuncNums, setIncludePuncNums } = useTypingTest();
 
   const handleChange = (value: string[]) => {
-    setSelectedPunctuationNumbers(value as PunctuationNumbers[]);
+    setIncludePuncNums(value as IncludePuncNums);
   };
 
   return (
@@ -17,7 +16,7 @@ export const PunctuationNumbersSelector: React.FC = () => {
       className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 items-center justify-evenly sm:space-x-4"
       aria-label="Punctuation and Numbers"
       type="multiple"
-      value={selectedPunctuationNumbers}
+      value={includePuncNums}
       onValueChange={handleChange}
     >
       <ToggleGroup.Item
