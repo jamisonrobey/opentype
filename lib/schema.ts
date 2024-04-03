@@ -15,3 +15,18 @@ export const sessionTable = pgTable("session", {
     withTimezone: true,
   }).notNull(),
 });
+
+export const englishWords1kTable = pgTable("english_words_1k", {
+  rank: integer("rank").primaryKey(),
+  word: text("word"),
+});
+
+export const englishWords5kTable = pgTable("english_words_1k", {
+  rank: integer("rank").primaryKey(),
+  word: text("word"),
+});
+
+export const englishWords10kTable = pgTable("english_words_1k", {
+  rank: integer("rank").primaryKey(),
+  word: text("word"),
+});

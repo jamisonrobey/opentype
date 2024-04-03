@@ -1,6 +1,6 @@
-import { WordsTimeQuote } from "@/components/ModeSelector/types";
+import { GameMode } from "@/components/TypingTest/types";
 
-export const getDefaultLengthForMode = (mode: WordsTimeQuote) => {
+export const getDefaultLengthForMode = (mode: GameMode) => {
   switch (mode) {
     case "words":
       return 10;
