@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-const connectionString = `postgres://postgres.amvzfzmxakuvfgwmdlki:${process.env.DATABASE_PASSWORD}@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres`;
+const connectionString = `postgres://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.PGBOUNCER_PORT}/postgres`;
 const client = postgres(connectionString, { prepare: false });
 export const db = drizzle(client);
 
