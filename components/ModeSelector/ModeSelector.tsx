@@ -7,15 +7,43 @@ import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelect
 import { getDefaultLengthForMode } from "@/utils/getDefaultLength";
 import { LengthSelector } from "./selectors/LengthSelector";
 
+interface WordsResponse {
+  words: string[];
+}
+
 export const ModeSelector = () => {
-  const { setIncludePuncNums, setGameMode, setDuration } = useTypingTest();
+  const {
+    setIncludePuncNums,
+    setWords,
+    language,
+    gameMode,
+    setGameMode,
+    setDuration,
+    resetTest,
+  } = useTypingTest();
 
   const [showPunctuationNumbers, setShowPunctuationNumbers] = useState(true);
   const handleModeChange = (selected: GameMode) => {
     setGameMode(selected);
     setDuration(getDefaultLengthForMode(selected));
+    resetTest();
     if (selected === "quote") {
       setShowPunctuationNumbers(false);
+      fetch(`/api/words?numWords=${50}&mode=${gameMode}&lang=${language}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Request failed");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setWords(data.words);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          throw error;
+        });
+
       setIncludePuncNums([]);
     } else {
       setShowPunctuationNumbers(true);

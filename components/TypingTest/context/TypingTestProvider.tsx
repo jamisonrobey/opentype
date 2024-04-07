@@ -34,6 +34,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setGameStarted(false);
     setElapsedTime(0);
     setUserInput("");
+    setTypedWords((words) => []);
   };
 
   const value = {

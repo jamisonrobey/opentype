@@ -14,3 +14,11 @@ export type TimeModeDuration = 15 | 30 | 60 | 120;
 export type QuoteModeDuration = "all" | "short" | "medium" | "long";
 
 export type Duration = WordsModeDuration | TimeModeDuration | QuoteModeDuration;
+
+/* languages */
+
+export enum Language {
+  English1k = "english-1k",
+  English5k = "english-5k",
+  English10k = "english-10k",
+}

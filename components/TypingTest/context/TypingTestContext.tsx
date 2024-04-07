@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { GameMode, IncludePuncNums, Duration } from "../types";
+import { GameMode, IncludePuncNums, Duration, Language } from "../types";
 
 export interface TypingTestContextProps {
   includePuncNums: IncludePuncNums;
@@ -10,8 +10,8 @@ export interface TypingTestContextProps {
   setDuration: React.Dispatch<React.SetStateAction<Duration>>;
   words: string[];
   setWords: React.Dispatch<React.SetStateAction<string[]>>;
-  language: string;
-  setLanguage: React.Dispatch<React.SetStateAction<string>>;
+  language: Language;
+  setLanguage: React.Dispatch<React.SetStateAction<Language>>;
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
   typedWords: string[];
