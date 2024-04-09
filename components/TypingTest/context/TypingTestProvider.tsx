@@ -5,7 +5,6 @@ import { useState } from "react";
 
 interface TypingTestProviderProps {
   children: React.ReactNode;
-  initialWords: string[];
   initialPuncNums: IncludePuncNums;
   initialGameMode: GameMode;
   initialDuration: Duration;
@@ -14,19 +13,18 @@ interface TypingTestProviderProps {
 
 export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   children,
-  initialWords,
   initialPuncNums,
   initialGameMode,
   initialDuration,
   initialLanguage,
 }) => {
-  const [words, setWords] = useState(initialWords);
   const [includePuncNums, setIncludePuncNums] = useState(initialPuncNums);
   const [gameMode, setGameMode] = useState(initialGameMode);
   const [duration, setDuration] = useState(initialDuration);
   const [language, setLanguage] = useState(initialLanguage);
+  const [words, setWords] = useState<string[]>();
   const [userInput, setUserInput] = useState("");
-  const [typedWords, setTypedWords] = useState<string[]>([]);
+  const [typedWords, setTypedWords] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -34,12 +32,10 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setGameStarted(false);
     setElapsedTime(0);
     setUserInput("");
-    setTypedWords((words) => []);
+    setTypedWords(0);
   };
 
   const value = {
-    words,
-    setWords,
     includePuncNums,
     setIncludePuncNums,
     gameMode,
@@ -48,6 +44,8 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setDuration,
     language,
     setLanguage,
+    words,
+    setWords,
     userInput,
     setUserInput,
     gameStarted,

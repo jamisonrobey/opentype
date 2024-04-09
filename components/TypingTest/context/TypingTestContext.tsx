@@ -14,8 +14,8 @@ export interface TypingTestContextProps {
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
-  typedWords: string[];
-  setTypedWords: React.Dispatch<React.SetStateAction<string[]>>;
+  typedWords: number;
+  setTypedWords: React.Dispatch<React.SetStateAction<number>>;
   gameStarted: boolean;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
