@@ -17,8 +17,4 @@ export type Duration = WordsModeDuration | TimeModeDuration | QuoteModeDuration;
 
 /* languages */
 
-export enum Language {
-  English1k = "english-1k",
-  English5k = "english-5k",
-  English10k = "english-10k",
-}
+export type Language = "english-1k" | "english-5k" | "english-10k";

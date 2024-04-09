@@ -1,5 +1,5 @@
 "use client";
-import { IncludePuncNums, GameMode, Duration } from "../types";
+import { IncludePuncNums, GameMode, Duration, Language } from "../types";
 import { TypingTestContext, TypingTestContextProps } from "./TypingTestContext";
 import { useState } from "react";
 
@@ -8,7 +8,7 @@ interface TypingTestProviderProps {
   initialPuncNums: IncludePuncNums;
   initialGameMode: GameMode;
   initialDuration: Duration;
-  initialLanguage: string;
+  initialLanguage: Language;
 }
 
 export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({

@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useContext } from "react";
 import { GameMode, IncludePuncNums, Duration, Language } from "../types";
 
