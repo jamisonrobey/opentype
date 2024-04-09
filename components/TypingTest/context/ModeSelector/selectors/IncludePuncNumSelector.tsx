@@ -1,5 +1,5 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { IncludePuncNums } from "@/components/TypingTest/types";
+import { IncludePuncNums } from "../../types";
 import { TextIcon } from "@radix-ui/react-icons";
 import { HashIcon } from "@/components/static/HashIcon";
 import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";

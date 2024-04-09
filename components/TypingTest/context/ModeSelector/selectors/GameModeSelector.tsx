@@ -1,5 +1,5 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { GameMode } from "@/components/TypingTest/types";
+import { GameMode } from "../../types";
 import { TextIcon, CountdownTimerIcon, QuoteIcon } from "@radix-ui/react-icons";
 import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
 interface GameModeSelectorProps {

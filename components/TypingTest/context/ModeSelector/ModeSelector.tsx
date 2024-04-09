@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useTypingTest } from "../TypingTest/context/TypingTestContext";
-import { GameMode } from "../TypingTest/types";
-import { WordsTimeQuoteSelector } from "./selectors/WordsTimeQuoteSelector";
-import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelector";
+import { useTypingTest } from "../TypingTestContext";
+import { GameMode } from "../types";
+import { WordsTimeQuoteSelector } from "./selectors/GameModeSelector";
+import { PunctuationNumbersSelector } from "./selectors/IncludePuncNumSelector";
 import { getDefaultLengthForMode } from "@/utils/getDefaultLength";
-import { LengthSelector } from "./selectors/LengthSelector";
+import { LengthSelector } from "./selectors/DurationSelector";
 
 interface WordsResponse {
   words: string[];
