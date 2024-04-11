@@ -6,40 +6,45 @@ import { db } from "@/lib/db";
 import { switchLangForTable } from "@/utils/switchLangForTable";
 import { sql } from "drizzle-orm";
 import { WordRenderer } from "./WordRenderer";
-interface TypingTestProps {
-  initialGameMode: GameMode;
-  initialPuncNums: IncludePuncNums;
-  initialLanguage: Language;
-}
+import { englishWords1kTable } from "@/lib/schema";
 
-export const TypingTest = async ({
-  initialGameMode,
-  initialPuncNums,
-  initialLanguage,
-}: TypingTestProps) => {
+const initialGameMode = "time";
+const initialPuncNums: IncludePuncNums = [];
+const initialLanguage = "english-1k";
+
+export const TypingTest = async ({}) => {
   const duration = getDefaultLengthForMode(initialGameMode);
   let words: string[] = [];
-  const table = switchLangForTable(initialLanguage);
 
-  if (initialGameMode == "quote") {
-  } else {
-    const table = switchLangForTable(initialLanguage);
-    if (initialGameMode == "words") {
-      const wordsQueryResult = await db
-        .select({ words: table })
-        .from(table)
-        .orderBy(sql`RANDOM()`)
-        .limit(duration);
-      words = await wordsQueryResult.map((row) => row.words.word);
-    } else {
-      const wordsQueryResult = await db
-        .select({ words: table })
-        .from(table)
-        .orderBy(sql`RANDOM()`)
-        .limit(50);
-      words = await wordsQueryResult.map((row) => row.words.word);
-    }
-  }
+  // DO some local storage maybe and save the selections
+
+  // if (initialGameMode == "quote") {
+  // } else {
+  //   const table = switchLangForTable(initialLanguage);
+  //   if (initialGameMode == "words") {
+  //     const wordsQueryResult = await db
+  //       .select({ words: table })
+  //       .from(table)
+  //       .orderBy(sql`RANDOM()`)
+  //       .limit(duration);
+  //     words = await wordsQueryResult.map((row) => row.words.word);
+  //   } else {
+  //     const wordsQueryResult = await db
+  //       .select({ words: table })
+  //       .from(table)
+  //       .orderBy(sql`RANDOM()`)
+  //       .limit(50);
+  //     words = await wordsQueryResult.map((row) => row.words.word);
+  //   }
+  // }
+
+  // for now hardcoded time is the default game mode
+  const wordsQueryResult = await db
+    .select({ words: englishWords1kTable })
+    .from(englishWords1kTable)
+    .orderBy(sql`RANDOM()`)
+    .limit(50);
+  words = await wordsQueryResult.map((row) => row.words.word);
 
   return (
     <TypingTestProvider

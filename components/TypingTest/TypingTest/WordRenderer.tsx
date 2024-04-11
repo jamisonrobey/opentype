@@ -8,9 +8,6 @@ interface WordRendererProps {
 }
 
 export const WordRenderer = ({ initialWords }: WordRendererProps) => {
-  const { words, setWords } = useTypingTest();
-
-  setWords(initialWords);
   return (
     <div className="text-2xl w-3/4 mb-4 h-24 overflow-auto no-scrollbar relative">
       {initialWords.map((word, index) => (
