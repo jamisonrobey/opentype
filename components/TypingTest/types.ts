@@ -18,3 +18,10 @@ export type Duration = WordsModeDuration | TimeModeDuration | QuoteModeDuration;
 /* languages */
 
 export type Language = "english-1k" | "english-5k" | "english-10k";
+
+export interface AccuracyMetrics {
+  correct: number;
+  incorrect: number;
+  extra: number;
+  missed: number;
+}

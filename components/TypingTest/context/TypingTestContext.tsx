@@ -1,6 +1,12 @@
 "use client";
 import { createContext, useContext } from "react";
-import { GameMode, IncludePuncNums, Duration, Language } from "../types";
+import {
+  GameMode,
+  IncludePuncNums,
+  Duration,
+  Language,
+  AccuracyMetrics,
+} from "../types";
 
 export interface TypingTestContextProps {
   includePuncNums: IncludePuncNums;
@@ -21,6 +27,8 @@ export interface TypingTestContextProps {
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
   setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
+  accuracyMetrics: AccuracyMetrics;
+  setAccuracyMetrics: React.Dispatch<React.SetStateAction<AccuracyMetrics>>;
   resetTest: () => void;
 }
 
