@@ -7,6 +7,7 @@ import { switchLangForTable } from "@/utils/switchLangForTable";
 import { sql } from "drizzle-orm";
 import { WordRenderer } from "./WordRenderer";
 import { englishWords1kTable } from "@/lib/schema";
+import { InputHandler } from "./InputHandler";
 
 const initialGameMode = "time";
 const initialPuncNums: IncludePuncNums = [];
@@ -55,6 +56,7 @@ export const TypingTest = async ({}) => {
     >
       <ModeSelector />
       <WordRenderer initialWords={words} />
+      <InputHandler />
     </TypingTestProvider>
   );
 };
