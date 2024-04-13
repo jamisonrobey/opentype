@@ -1,32 +1,32 @@
 "use client";
-import { IncludePuncNums, GameMode, Duration } from "../types";
+import { IncludePuncNums, GameMode, Duration, Language } from "../types";
 import { TypingTestContext, TypingTestContextProps } from "./TypingTestContext";
 import { useState } from "react";
 
 interface TypingTestProviderProps {
   children: React.ReactNode;
-  initialWords: string[];
   initialPuncNums: IncludePuncNums;
   initialGameMode: GameMode;
   initialDuration: Duration;
-  initialLanguage: string;
+  initialLanguage: Language;
+  initialWords: string[];
 }
 
 export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   children,
-  initialWords,
   initialPuncNums,
   initialGameMode,
   initialDuration,
   initialLanguage,
+  initialWords,
 }) => {
-  const [words, setWords] = useState(initialWords);
   const [includePuncNums, setIncludePuncNums] = useState(initialPuncNums);
   const [gameMode, setGameMode] = useState(initialGameMode);
   const [duration, setDuration] = useState(initialDuration);
   const [language, setLanguage] = useState(initialLanguage);
+  const [words, setWords] = useState<string[]>(initialWords);
   const [userInput, setUserInput] = useState("");
-  const [typedWords, setTypedWords] = useState<string[]>([]);
+  const [typedWords, setTypedWords] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -34,12 +34,10 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setGameStarted(false);
     setElapsedTime(0);
     setUserInput("");
-    setTypedWords((words) => []);
+    setTypedWords(0);
   };
 
   const value = {
-    words,
-    setWords,
     includePuncNums,
     setIncludePuncNums,
     gameMode,
@@ -48,11 +46,9 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setDuration,
     language,
     setLanguage,
-    userInput,
-    setUserInput,
+    words,
+    setWords,
     gameStarted,
-    typedWords,
-    setTypedWords,
     setGameStarted,
     elapsedTime,
     setElapsedTime,

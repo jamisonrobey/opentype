@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useTypingTest } from "../TypingTest/context/TypingTestContext";
-import { GameMode } from "../TypingTest/types";
-import { WordsTimeQuoteSelector } from "./selectors/WordsTimeQuoteSelector";
-import { PunctuationNumbersSelector } from "./selectors/PunctuationNumbersSelector";
-import { getDefaultLengthForMode } from "@/utils/getDefaultLength";
-import { LengthSelector } from "./selectors/LengthSelector";
+import { useTypingTest } from "../context/TypingTestContext";
+import { GameMode } from "../types";
+import { WordsTimeQuoteSelector } from "./selectors/GameModeSelector";
+import { PunctuationNumbersSelector } from "./selectors/IncludePuncNumSelector";
+import { getDefaultLengthForMode } from "@/utils/getDefaultDuration";
+import { LengthSelector } from "./selectors/DurationSelector";
 
 interface WordsResponse {
   words: string[];
@@ -29,21 +29,6 @@ export const ModeSelector = () => {
     resetTest();
     if (selected === "quote") {
       setShowPunctuationNumbers(false);
-      fetch(`/api/words?numWords=${50}&mode=${gameMode}&lang=${language}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Request failed");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setWords(data.words);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          throw error;
-        });
-
       setIncludePuncNums([]);
     } else {
       setShowPunctuationNumbers(true);

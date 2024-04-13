@@ -18,15 +18,15 @@ export const sessionTable = pgTable("session", {
 
 export const englishWords1kTable = pgTable("english_words_1k", {
   rank: integer("rank").primaryKey(),
-  word: text("word"),
+  word: text("word").notNull(),
 });
 
 export const englishWords5kTable = pgTable("english_words_1k", {
   rank: integer("rank").primaryKey(),
-  word: text("word"),
+  word: text("word").notNull(),
 });
 
 export const englishWords10kTable = pgTable("english_words_1k", {
   rank: integer("rank").primaryKey(),
-  word: text("word"),
+  word: text("word").notNull(),
 });

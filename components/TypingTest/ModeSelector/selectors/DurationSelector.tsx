@@ -1,5 +1,5 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { Duration } from "@/components/TypingTest/types";
+import { Duration } from "../../types";
 import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
 
 export const LengthSelector: React.FC = () => {
