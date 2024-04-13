@@ -7,7 +7,7 @@ import { switchLangForTable } from "@/utils/switchLangForTable";
 import { sql } from "drizzle-orm";
 import { WordRenderer } from "./WordRenderer";
 import { englishWords1kTable } from "@/lib/schema";
-import { InputHandler } from "./InputHandler";
+// import { InputHandler } from "./InputHandler";
 
 const initialGameMode = "time";
 const initialPuncNums: IncludePuncNums = [];
@@ -15,7 +15,6 @@ const initialLanguage = "english-1k";
 
 export const TypingTest = async ({}) => {
   const duration = getDefaultLengthForMode(initialGameMode);
-  let words: string[] = [];
 
   // DO some local storage maybe and save the selections
 
@@ -45,7 +44,7 @@ export const TypingTest = async ({}) => {
     .from(englishWords1kTable)
     .orderBy(sql`RANDOM()`)
     .limit(50);
-  words = await wordsQueryResult.map((row) => row.words.word);
+  const words = await wordsQueryResult.map((row) => row.words.word);
 
   return (
     <TypingTestProvider
@@ -57,7 +56,6 @@ export const TypingTest = async ({}) => {
     >
       <ModeSelector />
       <WordRenderer />
-      <InputHandler />
     </TypingTestProvider>
   );
 };
