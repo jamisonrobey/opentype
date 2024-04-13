@@ -6,6 +6,7 @@ import {
   Duration,
   Language,
   AccuracyMetrics,
+  GamePhase,
 } from "../types";
 
 export interface TypingTestContextProps {
@@ -19,12 +20,16 @@ export interface TypingTestContextProps {
   setWords: React.Dispatch<React.SetStateAction<string[]>>;
   language: Language;
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
-  gameStarted: boolean;
-  setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  gamePhase: GamePhase;
+  setGamePhase: React.Dispatch<React.SetStateAction<GamePhase>>;
   elapsedTime: number;
   setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   accuracyMetrics: AccuracyMetrics;
   setAccuracyMetrics: React.Dispatch<React.SetStateAction<AccuracyMetrics>>;
+  userInput: string;
+  setUserInput: React.Dispatch<React.SetStateAction<string>>;
+  typedWords: string[];
+  setTypedWords: React.Dispatch<React.SetStateAction<string[]>>;
   resetTest: () => void;
 }
 

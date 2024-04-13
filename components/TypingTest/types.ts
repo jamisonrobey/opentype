@@ -19,9 +19,9 @@ export type Duration = WordsModeDuration | TimeModeDuration | QuoteModeDuration;
 
 export type Language = "english-1k" | "english-5k" | "english-10k";
 
+export type GamePhase = "notStarted" | "inProgress" | "over";
+
 export interface AccuracyMetrics {
   correct: number;
-  incorrect: number;
-  extra: number;
-  missed: number;
+  total: number;
 }

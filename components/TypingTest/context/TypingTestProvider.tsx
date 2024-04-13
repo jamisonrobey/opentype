@@ -1,5 +1,12 @@
 "use client";
-import { IncludePuncNums, GameMode, Duration, Language } from "../types";
+import {
+  IncludePuncNums,
+  GameMode,
+  Duration,
+  Language,
+  AccuracyMetrics,
+  GamePhase,
+} from "../types";
 import { TypingTestContext, TypingTestContextProps } from "./TypingTestContext";
 import { useState } from "react";
 
@@ -26,15 +33,17 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   const [language, setLanguage] = useState(initialLanguage);
   const [words, setWords] = useState<string[]>(initialWords);
   const [userInput, setUserInput] = useState("");
-  const [typedWords, setTypedWords] = useState(0);
-  const [gameStarted, setGameStarted] = useState(false);
+  const [typedWords, setTypedWords] = useState<string[]>([]);
+  const [accuracyMetrics, setAccuracyMetrics] = useState<AccuracyMetrics>({
+    correct: 0,
+    total: 0,
+  });
+  const [gamePhase, setGamePhase] = useState<GamePhase>("notStarted");
   const [elapsedTime, setElapsedTime] = useState(0);
 
   const resetTest = () => {
-    setGameStarted(false);
-    setElapsedTime(0);
     setUserInput("");
-    setTypedWords(0);
+    setTypedWords([]);
   };
 
   const value = {
@@ -48,11 +57,17 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setLanguage,
     words,
     setWords,
-    gameStarted,
-    setGameStarted,
+    gamePhase,
+    setGamePhase,
     elapsedTime,
     setElapsedTime,
     resetTest,
+    userInput,
+    setUserInput,
+    typedWords,
+    setTypedWords,
+    accuracyMetrics,
+    setAccuracyMetrics,
   } as TypingTestContextProps;
 
   return (
