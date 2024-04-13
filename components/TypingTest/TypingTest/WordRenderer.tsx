@@ -8,26 +8,28 @@ interface WordRendererProps {
 
 export const WordRenderer = ({ initialWords }: WordRendererProps) => {
   const { words, setWords, userInput, typedWords } = useTypingTest();
-  const [currentChar, setCurrentChar] = useState(0);
-  const [test, setTest] = useState("text-green-500");
   setWords(initialWords);
-
-  useEffect(() => {
-    setCurrentChar(userInput.length);
-  }, [userInput]);
-
-  const getCharStyle = (wordIndex: number, chIndex: number) => {};
-
+  const getCursorStyling = (wordsIndex: number, chIndex: number) => {
+    if (typedWords != wordsIndex) return;
+    if (chIndex == userInput.length) {
+      return "border-l border-l-[var(--accent-color)]";
+    } else if (
+      chIndex == words[wordsIndex].length - 1 &&
+      userInput.length > chIndex
+    ) {
+      return "border-r border-r-[var(--accent-color)]";
+    }
+  };
   return (
     <div className="text-2xl w-3/4 mb-4 h-24 overflow-auto no-scrollbar relative">
       {words
         ? words.map((word, wordsIndex) => (
             <span key={wordsIndex} className={`inline-block mr-6 `}>
-              <span
-                className={typedWords == wordsIndex ? "text-green-500" : ""}
-              >
+              <span>
                 {word.split("").map((ch, chIndex) => (
-                  <span>{ch}</span>
+                  <span className={`${getCursorStyling(wordsIndex, chIndex)}`}>
+                    {ch}
+                  </span>
                 ))}
               </span>
             </span>

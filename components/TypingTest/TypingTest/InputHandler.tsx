@@ -2,11 +2,12 @@
 import { useTypingTest } from "../context/TypingTestContext";
 
 export const InputHandler = () => {
-  const { userInput, setUserInput, setTypedWords } = useTypingTest();
+  const { userInput, setUserInput, setTypedWords, typedWords, words } =
+    useTypingTest();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    console.log(value);
+    const currentWord = words[typedWords];
     if (value.endsWith(" ")) {
       setTypedWords((prev) => prev + 1);
       setUserInput("");
