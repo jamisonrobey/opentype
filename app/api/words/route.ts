@@ -24,11 +24,11 @@ const getRandomWords = async (lang: Language, numWords: string) => {
 
 const getTableForLang = (lang: Language): PgTable => {
   switch (lang) {
-    case Language.English1k:
+    case "english-1k":
       return englishWords1kTable;
-    case Language.English5k:
+    case "english-5k":
       return englishWords5kTable;
-    case Language.English10k:
+    case "english-10k":
       return englishWords10kTable;
     default:
       return englishWords1kTable;
@@ -38,7 +38,7 @@ const getTableForLang = (lang: Language): PgTable => {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const numWords = searchParams.get("numWords") as string;
-  const mode = searchParams.get("mode");
+  // const mode = searchParams.get("mode");
   const lang = searchParams.get("lang") as Language;
   try {
     const words = await getRandomWords(lang, numWords);

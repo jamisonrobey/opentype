@@ -1,11 +1,24 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTypingTest } from "../context/TypingTestContext";
 
 export const WordRenderer = () => {
-  const { words, setWords } = useTypingTest();
+  const { words, setWords, resetTest } = useTypingTest();
   const [typedWords, setTypedWords] = useState<string[]>([]);
   const [userInput, setUserInput] = useState("");
+  const [fadeClass, setFadeClass] = useState("");
+
+  const testFetch = () => {
+    setFadeClass("opacity-0 transition-all duration-1000");
+    fetch("/api/words?lang=english-1k&numWords=500")
+      .then((res) => res.json())
+      .then((res) => {
+        setTimeout(() => {
+          setWords(res.words);
+          setFadeClass("opacity-100 transition-all ease-linear duration-1000");
+        }, 200);
+      });
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -17,16 +30,15 @@ export const WordRenderer = () => {
       setUserInput(value);
     }
   };
-
   const getCursorStyling = (wordIndex: number, charIndex: number) => {
     if (typedWords.length != wordIndex) return;
     if (charIndex == userInput.length) {
-      return "border-l border-l-[var(--accent-color)]";
+      return "border-l border-l-[var(--accent-color)] ";
     } else if (
       charIndex == words[wordIndex].length - 1 &&
       userInput.length > charIndex
     ) {
-      return "border-r border-r-[var(--accent-color)]";
+      return "border-r border-r-[var(--accent-color)] ";
     }
   };
 
@@ -52,8 +64,10 @@ export const WordRenderer = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="text-2xl w-3/4 mb-4 h-24 overflow-auto no-scrollbar relative">
+    <div className="flex flex-col justify-evenly flex-grow items-center">
+      <div
+        className={`text-4xl w-3/4 mb-4 h-44 space-y-4 overflow-auto no-scrollbar relative ${fadeClass}`}
+      >
         {words.map((word, wordIndex) => (
           <span key={wordIndex} className={`inline-block mr-6 `}>
             <span>
@@ -72,6 +86,7 @@ export const WordRenderer = () => {
         ))}
       </div>
       <input value={userInput} onChange={handleInputChange} className="w-3/4" />
+      <button onClick={testFetch}>Get new words test</button>
     </div>
   );
 };

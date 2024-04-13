@@ -29,49 +29,6 @@
   transition-duration: 100ms;
 }
 
-.example-enter {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 500ms, transform 500ms;
-}
-
-.example-leave {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.example-leave.example-leave-active {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Simulate blinking of input cursor */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.input-cursor {
-  @apply border-r-2 border-r-[var(--accent-color)] h-[1.5em] absolute;
-  animation: blink 1s step-end infinite;
-  animation-play-state: running; /* Start the animation initially */
-}
-
-.input-cursor.not-focused {
-  animation-play-state: paused; /* Pause the animation when not focused */
-}
-
 /* Custom TailwindCSS classes */
 
 body {
