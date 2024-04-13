@@ -53,9 +53,10 @@ export const TypingTest = async ({}) => {
       initialDuration={duration}
       initialLanguage={initialLanguage}
       initialPuncNums={initialPuncNums}
+      initialWords={words}
     >
       <ModeSelector />
-      <WordRenderer initialWords={words} />
+      <WordRenderer />
       <InputHandler />
     </TypingTestProvider>
   );

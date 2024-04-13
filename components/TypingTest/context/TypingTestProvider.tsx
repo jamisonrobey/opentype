@@ -9,6 +9,7 @@ interface TypingTestProviderProps {
   initialGameMode: GameMode;
   initialDuration: Duration;
   initialLanguage: Language;
+  initialWords: string[];
 }
 
 export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
@@ -17,12 +18,13 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   initialGameMode,
   initialDuration,
   initialLanguage,
+  initialWords,
 }) => {
   const [includePuncNums, setIncludePuncNums] = useState(initialPuncNums);
   const [gameMode, setGameMode] = useState(initialGameMode);
   const [duration, setDuration] = useState(initialDuration);
   const [language, setLanguage] = useState(initialLanguage);
-  const [words, setWords] = useState<string[]>();
+  const [words, setWords] = useState<string[]>(initialWords);
   const [userInput, setUserInput] = useState("");
   const [typedWords, setTypedWords] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
