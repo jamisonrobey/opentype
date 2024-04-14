@@ -28,6 +28,7 @@ export const InputHandler = () => {
       setTypedWords((prev) => [...prev, value]);
       setUserInput("");
       setAccuracyMetrics((prev) => ({
+        ...prev,
         correct: prev.correct + correct,
         total: prev.total + value.length - 1,
       }));

@@ -1,8 +1,8 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { IncludePuncNums } from "../../types";
+import { IncludePuncNums } from "@/components/TypingTest/types";
 import { TextIcon } from "@radix-ui/react-icons";
 import { HashIcon } from "@/components/static/HashIcon";
-import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
+import { useTypingTest } from "@/components/context/TypingTestContext";
 
 export const PunctuationNumbersSelector: React.FC = () => {
   const { includePuncNums, setIncludePuncNums } = useTypingTest();

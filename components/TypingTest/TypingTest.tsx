@@ -1,6 +1,6 @@
 import { getDefaultLengthForMode } from "@/utils/getDefaultDuration";
 import { TypingTestProvider } from "../context/TypingTestProvider";
-import { IncludePuncNums } from "../types";
+import { IncludePuncNums } from "./types";
 import { db } from "@/lib/db";
 import { sql } from "drizzle-orm";
 import { englishWords1kTable } from "@/lib/schema";

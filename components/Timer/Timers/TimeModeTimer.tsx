@@ -1,10 +1,10 @@
 "use client";
-import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
-import { redirect } from "next/navigation";
+import { useTypingTest } from "@/components/context/TypingTestContext";
 import { useEffect } from "react";
 export const TimeModeTimer = () => {
   const {
     elapsedTime,
+    setAccuracyMetrics,
     accuracyMetrics,
     setElapsedTime,
     gamePhase,
@@ -18,6 +18,10 @@ export const TimeModeTimer = () => {
     if (gamePhase == "inProgress" && elapsedTime < duration) {
       timer = setTimeout(() => {
         setElapsedTime((time) => time + 1);
+        setAccuracyMetrics((prev) => ({
+          ...prev,
+          wpmOverTime: [...accuracyMetrics.wpmOverTime],
+        }));
       }, 1000);
     }
     // @ts-ignore

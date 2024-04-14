@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTypingTest } from "../context/TypingTestContext";
-import { GameMode } from "../types";
+import { GameMode } from "../TypingTest/types";
 import { WordsTimeQuoteSelector } from "./selectors/GameModeSelector";
 import { PunctuationNumbersSelector } from "./selectors/IncludePuncNumSelector";
 import { getDefaultLengthForMode } from "@/utils/getDefaultDuration";
@@ -12,15 +12,8 @@ interface WordsResponse {
 }
 
 export const ModeSelector = () => {
-  const {
-    setIncludePuncNums,
-    setWords,
-    language,
-    gameMode,
-    setGameMode,
-    setDuration,
-    resetTest,
-  } = useTypingTest();
+  const { setIncludePuncNums, gamePhase, setGameMode, setDuration, resetTest } =
+    useTypingTest();
 
   const [showPunctuationNumbers, setShowPunctuationNumbers] = useState(true);
   const handleModeChange = (selected: GameMode) => {
@@ -36,7 +29,11 @@ export const ModeSelector = () => {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div
+      className={`w-full flex justify-center ${
+        gamePhase == "over" ? "invisible" : "visible"
+      }`}
+    >
       <div
         className={`flex p-4 sm:px-4 text-xs items-center justify-evenly w-8/10 2xl:w-3/7 rounded-lg bg-[var(--bgDark-color)]`}
       >

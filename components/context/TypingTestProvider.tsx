@@ -6,7 +6,7 @@ import {
   Language,
   AccuracyMetrics,
   GamePhase,
-} from "../types";
+} from "../TypingTest/types";
 import { TypingTestContext, TypingTestContextProps } from "./TypingTestContext";
 import { useState } from "react";
 
@@ -37,6 +37,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   const [accuracyMetrics, setAccuracyMetrics] = useState<AccuracyMetrics>({
     correct: 0,
     total: 0,
+    wpmOverTime: [],
   });
   const [gamePhase, setGamePhase] = useState<GamePhase>("notStarted");
   const [elapsedTime, setElapsedTime] = useState(0);

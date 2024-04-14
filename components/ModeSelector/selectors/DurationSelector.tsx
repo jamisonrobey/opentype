@@ -1,6 +1,6 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { Duration } from "../../types";
-import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
+import { Duration } from "@/components/TypingTest/types";
+import { useTypingTest } from "@/components/context/TypingTestContext";
 
 export const LengthSelector: React.FC = () => {
   const { gameMode, duration, setDuration } = useTypingTest();

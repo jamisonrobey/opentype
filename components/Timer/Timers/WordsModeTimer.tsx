@@ -1,6 +1,5 @@
 "use client";
-import { useTypingTest } from "@/components/TypingTest/context/TypingTestContext";
-import { redirect } from "next/navigation";
+import { useTypingTest } from "@/components/context/TypingTestContext";
 import { useEffect } from "react";
 export const WordsModeTimer = () => {
   const {

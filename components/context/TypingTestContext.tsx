@@ -7,7 +7,7 @@ import {
   Language,
   AccuracyMetrics,
   GamePhase,
-} from "../types";
+} from "../TypingTest/types";
 
 export interface TypingTestContextProps {
   includePuncNums: IncludePuncNums;
