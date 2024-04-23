@@ -1,22 +1,25 @@
 "use client";
-import { useLocalStorage } from "usehooks-ts";
 import { useEffect, useState } from "react";
 import themes from "./Themes";
 import Theme from "./Theme";
+import { ThemeType } from "./Themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { useTypingTest } from "../context/TypingTestContext";
+import { useLocalStorage } from "usehooks-ts";
+
 const ThemeSwitch = () => {
-  const [theme, setTheme] = useLocalStorage("theme", "serika-dark");
+  const { theme, setTheme } = useTypingTest();
   const [hoverTheme, setHoverTheme] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    document.body.classList.remove(...themes.map((t) => t.name));
-    document.body.classList.add(hoverTheme || theme);
+    document.body.classList.remove(...themes.map((t) => t.className));
+    document.body.classList.add(hoverTheme || theme.className);
   }, [theme, hoverTheme]);
 
-  const handleThemeChange = (selectedTheme: string) => {
-    setTheme(selectedTheme);
+  const handleThemeChange = (selectedTheme: ThemeType) => {
+    setTheme(theme);
     setIsOpen(false);
   };
 
@@ -33,7 +36,7 @@ const ThemeSwitch = () => {
   };
 
   const filteredThemes = themes.filter((t) =>
-    t.name.toLowerCase().includes(searchQuery.toLowerCase())
+    t.className.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -65,12 +68,12 @@ const ThemeSwitch = () => {
               <div className="">
                 {filteredThemes.map((t) => (
                   <Theme
-                    key={t.name}
-                    {...t}
-                    selected={(hoverTheme || theme) === t.name}
-                    onMouseEnter={() => handleMouseEnter(t.name)}
+                    key={t.className}
+                    theme={t}
+                    selected={(hoverTheme || theme) === t.className}
+                    onMouseEnter={() => handleMouseEnter(t.className)}
                     onMouseLeave={handleMouseLeave}
-                    onClick={() => handleThemeChange(t.name)}
+                    onClick={() => handleThemeChange(t)}
                   />
                 ))}
               </div>

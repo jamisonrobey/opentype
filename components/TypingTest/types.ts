@@ -25,4 +25,5 @@ export interface AccuracyMetrics {
   correct: number;
   total: number;
   wpmOverTime: number[];
+  rawWpmOverTime: number[];
 }

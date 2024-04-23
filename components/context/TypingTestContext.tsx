@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext } from "react";
+import { ThemeType } from "../ThemeSwitcher/Themes";
 import {
   GameMode,
   IncludePuncNums,
@@ -10,6 +11,8 @@ import {
 } from "../TypingTest/types";
 
 export interface TypingTestContextProps {
+  theme: ThemeType;
+  setTheme: React.Dispatch<React.SetStateAction<ThemeType>>;
   includePuncNums: IncludePuncNums;
   setIncludePuncNums: React.Dispatch<React.SetStateAction<IncludePuncNums>>;
   gameMode: GameMode;
@@ -26,6 +29,7 @@ export interface TypingTestContextProps {
   setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   accuracyMetrics: AccuracyMetrics;
   setAccuracyMetrics: React.Dispatch<React.SetStateAction<AccuracyMetrics>>;
+  updateAccuracyMetrics: () => void;
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
   typedWords: string[];

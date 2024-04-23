@@ -1,4 +1,5 @@
 "use client";
+import themes, { ThemeType } from "../ThemeSwitcher/Themes";
 import {
   IncludePuncNums,
   GameMode,
@@ -27,6 +28,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   initialLanguage,
   initialWords,
 }) => {
+  const [theme, setTheme] = useState<ThemeType>(themes[0]);
   const [includePuncNums, setIncludePuncNums] = useState(initialPuncNums);
   const [gameMode, setGameMode] = useState(initialGameMode);
   const [duration, setDuration] = useState(initialDuration);
@@ -38,6 +40,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     correct: 0,
     total: 0,
     wpmOverTime: [],
+    rawWpmOverTime: [],
   });
   const [gamePhase, setGamePhase] = useState<GamePhase>("notStarted");
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -47,7 +50,21 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setTypedWords([]);
   };
 
+  const updateAccuracyMetrics = () => {
+    if (typedWords.length == 0) return;
+    const { correct, total } = accuracyMetrics;
+    const newWpm = (correct / 5) * (60 / elapsedTime);
+    const newRaw = (total / 5) * (60 / elapsedTime);
+    setAccuracyMetrics((prev) => ({
+      ...prev,
+      wpmOverTime: [...accuracyMetrics.wpmOverTime, newWpm],
+      rawWpmOverTime: [...accuracyMetrics.rawWpmOverTime, newRaw],
+    }));
+  };
+
   const value = {
+    theme,
+    setTheme,
     includePuncNums,
     setIncludePuncNums,
     gameMode,
@@ -69,6 +86,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setTypedWords,
     accuracyMetrics,
     setAccuracyMetrics,
+    updateAccuracyMetrics,
   } as TypingTestContextProps;
 
   return (

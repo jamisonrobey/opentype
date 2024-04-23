@@ -1,21 +1,14 @@
+import { ThemeType } from "./Themes";
 interface ThemeProps {
-  name: string;
-  accentColor: string;
-  textColor: string;
-  titleColor: string;
+  theme: ThemeType;
   selected: boolean;
-  bgColor: string;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onClick: () => void;
 }
 
 const Theme: React.FC<ThemeProps> = ({
-  name,
-  accentColor,
-  textColor,
-  titleColor,
-  bgColor,
+  theme,
   onMouseEnter,
   onMouseLeave,
   onClick,
@@ -27,22 +20,22 @@ const Theme: React.FC<ThemeProps> = ({
       onMouseLeave={onMouseLeave}
       onClick={onClick}
     >
-      <span className="px-2">{name}</span>
+      <span className="px-2">{theme.className}</span>
       <div
         className="flex space-x-1 p-1 rounded-3xl m-1"
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: theme.colors.bgColor }}
       >
         <div
           className="w-4 h-4 rounded-full"
-          style={{ backgroundColor: accentColor }}
+          style={{ backgroundColor: theme.colors.accentColor }}
         ></div>
         <div
           className="w-4 h-4 rounded-full"
-          style={{ backgroundColor: textColor }}
+          style={{ backgroundColor: theme.colors.textColor }}
         ></div>
         <div
           className="w-4 h-4 rounded-full"
-          style={{ backgroundColor: titleColor }}
+          style={{ backgroundColor: theme.colors.titleColor }}
         ></div>
       </div>
     </div>

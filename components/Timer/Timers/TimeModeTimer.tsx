@@ -4,8 +4,7 @@ import { useEffect } from "react";
 export const TimeModeTimer = () => {
   const {
     elapsedTime,
-    setAccuracyMetrics,
-    accuracyMetrics,
+    updateAccuracyMetrics,
     setElapsedTime,
     gamePhase,
     setGamePhase,
@@ -15,13 +14,10 @@ export const TimeModeTimer = () => {
   useEffect(() => {
     let timer;
     // @ts-ignore
-    if (gamePhase == "inProgress" && elapsedTime < duration) {
+    if (gamePhase == "inProgress") {
       timer = setTimeout(() => {
         setElapsedTime((time) => time + 1);
-        setAccuracyMetrics((prev) => ({
-          ...prev,
-          wpmOverTime: [...accuracyMetrics.wpmOverTime],
-        }));
+        updateAccuracyMetrics();
       }, 1000);
     }
     // @ts-ignore

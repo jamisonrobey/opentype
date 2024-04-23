@@ -1,14 +1,43 @@
-const themes = [
+export type ThemeType = {
+  className: string;
+  colors: {
+    bgColor: string;
+    accentColor: string;
+    titleColor: string;
+    textColor: string;
+    borderColor: string;
+    bgDarkColor: string;
+    darkAccentColor: string;
+  };
+};
+const themes: ThemeType[] = [
   {
-    name: "serika-dark",
-    bgColor: "#323437",
-    accentColor: "#ffb454",
-    titleColor: "#e2e2e3",
-    textColor: "#646669",
-    borderColor: "#1e1f21",
-    bgDark: "#2c2e31",
-    darkAccentColor: "#323437",
+    className: "serika-dark",
+    colors: {
+      bgColor: "#323437",
+      accentColor: "#ffb454",
+      titleColor: "#e2e2e3",
+      textColor: "#646669",
+      borderColor: "#1e1f21",
+      bgDarkColor: "#2c2e31",
+      darkAccentColor: "#323437",
+    },
   },
+
+  {
+    className: "dracula",
+    colors: {
+      bgColor: "#282a36",
+      accentColor: "#ff79c6",
+      titleColor: "#f8f8f2",
+      textColor: "#6272a4",
+      borderColor: "#1a1c23",
+      bgDarkColor: "#2c2e31",
+      darkAccentColor: "#323437",
+    },
+  },
+
+  /*  
   {
     name: "dracula",
     bgColor: "#282a36",
@@ -168,7 +197,7 @@ const themes = [
     titleColor: "#000000",
     textColor: "#333333",
     borderColor: "#e5e5e5",
-  },
+  }, */
 ];
 
 export default themes;

@@ -9,22 +9,29 @@ export const WordsModeTimer = () => {
     typedWords,
     setElapsedTime,
     duration,
+    updateAccuracyMetrics,
     resetTest,
   } = useTypingTest();
+
   useEffect(() => {
-    let timer;
-    // @ts-ignore
-    if (gamePhase == "inProgress" && elapsedTime < duration) {
-      timer = setTimeout(() => {
+    let timer: NodeJS.Timeout;
+    if (gamePhase == "inProgress") {
+      timer = setInterval(() => {
         setElapsedTime((time) => time + 1);
+        updateAccuracyMetrics();
       }, 1000);
     }
+    return () => {
+      clearInterval(timer);
+    };
+  }, [gamePhase, elapsedTime]);
+
+  useEffect(() => {
     if (typedWords.length == duration) {
-      clearTimeout(timer);
       resetTest();
       setGamePhase("over");
     }
-  }, [typedWords]);
+  }, [typedWords, duration]);
   return (
     <>
       {typedWords.length}/{duration}

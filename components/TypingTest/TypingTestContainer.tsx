@@ -7,7 +7,7 @@ import { TestResults } from "../Results/TestResults";
 export const TypingTestContainer = () => {
   const { gamePhase } = useTypingTest();
   return gamePhase == "over" ? (
-    <div className="flex flex-col items-center justify-center flex-grow">
+    <div className="flex flex-col flex-grow w-full items-center justify-center ">
       <TestResults />
     </div>
   ) : (

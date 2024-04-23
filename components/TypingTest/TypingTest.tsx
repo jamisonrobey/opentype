@@ -6,6 +6,7 @@ import { sql } from "drizzle-orm";
 import { englishWords1kTable } from "@/lib/schema";
 import { TypingTestContainer } from "./TypingTestContainer";
 import { ModeSelector } from "../ModeSelector/ModeSelector";
+import ThemeSwitch from "../ThemeSwitcher/ThemeSwitch";
 const initialGameMode = "time";
 const initialPuncNums: IncludePuncNums = [];
 const initialLanguage = "english-1k";
@@ -29,6 +30,7 @@ export const TypingTest = async ({}) => {
     >
       <ModeSelector />
       <TypingTestContainer />
+      <ThemeSwitch />
     </TypingTestProvider>
   );
 };
