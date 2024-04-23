@@ -1,25 +1,22 @@
 "use client";
+import { useLocalStorage } from "usehooks-ts";
 import { useEffect, useState } from "react";
 import themes from "./Themes";
 import Theme from "./Theme";
-import { ThemeType } from "./Themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { useTypingTest } from "../context/TypingTestContext";
-import { useLocalStorage } from "usehooks-ts";
-
 const ThemeSwitch = () => {
-  const { theme, setTheme } = useTypingTest();
+  const [theme, setTheme] = useLocalStorage("theme", "serika-dark");
   const [hoverTheme, setHoverTheme] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     document.body.classList.remove(...themes.map((t) => t.className));
-    document.body.classList.add(hoverTheme || theme.className);
+    document.body.classList.add(hoverTheme || theme);
   }, [theme, hoverTheme]);
 
-  const handleThemeChange = (selectedTheme: ThemeType) => {
-    setTheme(theme);
+  const handleThemeChange = (selectedTheme: string) => {
+    setTheme(selectedTheme);
     setIsOpen(false);
   };
 
@@ -73,7 +70,7 @@ const ThemeSwitch = () => {
                     selected={(hoverTheme || theme) === t.className}
                     onMouseEnter={() => handleMouseEnter(t.className)}
                     onMouseLeave={handleMouseLeave}
-                    onClick={() => handleThemeChange(t)}
+                    onClick={() => handleThemeChange(t.className)}
                   />
                 ))}
               </div>

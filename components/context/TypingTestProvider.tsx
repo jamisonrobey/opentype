@@ -28,43 +28,19 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   initialLanguage,
   initialWords,
 }) => {
-  const [theme, setTheme] = useState<ThemeType>(themes[0]);
   const [includePuncNums, setIncludePuncNums] = useState(initialPuncNums);
   const [gameMode, setGameMode] = useState(initialGameMode);
   const [duration, setDuration] = useState(initialDuration);
   const [language, setLanguage] = useState(initialLanguage);
   const [words, setWords] = useState<string[]>(initialWords);
   const [userInput, setUserInput] = useState("");
-  const [typedWords, setTypedWords] = useState<string[]>([]);
-  const [accuracyMetrics, setAccuracyMetrics] = useState<AccuracyMetrics>({
-    correct: 0,
-    total: 0,
-    wpmOverTime: [],
-    rawWpmOverTime: [],
-  });
-  const [gamePhase, setGamePhase] = useState<GamePhase>("notStarted");
   const [elapsedTime, setElapsedTime] = useState(0);
 
   const resetTest = () => {
     setUserInput("");
-    setTypedWords([]);
-  };
-
-  const updateAccuracyMetrics = () => {
-    if (typedWords.length == 0) return;
-    const { correct, total } = accuracyMetrics;
-    const newWpm = (correct / 5) * (60 / elapsedTime);
-    const newRaw = (total / 5) * (60 / elapsedTime);
-    setAccuracyMetrics((prev) => ({
-      ...prev,
-      wpmOverTime: [...accuracyMetrics.wpmOverTime, newWpm],
-      rawWpmOverTime: [...accuracyMetrics.rawWpmOverTime, newRaw],
-    }));
   };
 
   const value = {
-    theme,
-    setTheme,
     includePuncNums,
     setIncludePuncNums,
     gameMode,
@@ -75,18 +51,11 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setLanguage,
     words,
     setWords,
-    gamePhase,
-    setGamePhase,
     elapsedTime,
     setElapsedTime,
     resetTest,
     userInput,
     setUserInput,
-    typedWords,
-    setTypedWords,
-    accuracyMetrics,
-    setAccuracyMetrics,
-    updateAccuracyMetrics,
   } as TypingTestContextProps;
 
   return (
