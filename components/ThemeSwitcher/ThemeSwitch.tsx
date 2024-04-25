@@ -5,30 +5,32 @@ import Theme from "./Theme";
 import { ThemeType } from "./Themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useTypingTest } from "../context/TypingTestContext";
-import { useLocalStorage } from "usehooks-ts";
 
 const ThemeSwitch = () => {
   const { theme, setTheme } = useTypingTest();
+  const [tempTheme, setTempTheme] = useState(theme);
   const [hoverTheme, setHoverTheme] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     document.body.classList.remove(...themes.map((t) => t.className));
-    document.body.classList.add(hoverTheme || theme.className);
+    document.body.classList.add(theme.className);
   }, [theme, hoverTheme]);
 
   const handleThemeChange = (selectedTheme: ThemeType) => {
-    setTheme(theme);
+    setTheme(selectedTheme);
     setIsOpen(false);
   };
 
-  const handleMouseEnter = (selectedTheme: string) => {
-    setHoverTheme(selectedTheme);
+  const handleMouseEnter = (selectedTheme: ThemeType) => {
+    setTempTheme(theme);
+    setTheme(selectedTheme);
   };
 
   const handleMouseLeave = () => {
-    setHoverTheme("");
+    setTheme(tempTheme);
+    setTempTheme(theme);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,8 +72,8 @@ const ThemeSwitch = () => {
                   <Theme
                     key={t.className}
                     theme={t}
-                    selected={(hoverTheme || theme) === t.className}
-                    onMouseEnter={() => handleMouseEnter(t.className)}
+                    selected={theme === t}
+                    onMouseEnter={() => handleMouseEnter(t)}
                     onMouseLeave={handleMouseLeave}
                     onClick={() => handleThemeChange(t)}
                   />

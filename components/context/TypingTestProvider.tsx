@@ -39,8 +39,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   const [accuracyMetrics, setAccuracyMetrics] = useState<AccuracyMetrics>({
     correct: 0,
     total: 0,
-    wpmOverTime: [],
-    rawWpmOverTime: [],
+    chartData: [],
   });
   const [gamePhase, setGamePhase] = useState<GamePhase>("notStarted");
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -57,8 +56,10 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     const newRaw = (total / 5) * (60 / elapsedTime);
     setAccuracyMetrics((prev) => ({
       ...prev,
-      wpmOverTime: [...accuracyMetrics.wpmOverTime, newWpm],
-      rawWpmOverTime: [...accuracyMetrics.rawWpmOverTime, newRaw],
+      chartData: [
+        ...prev.chartData,
+        { name: elapsedTime.toString(), wpm: newWpm, raw: newRaw },
+      ],
     }));
   };
 

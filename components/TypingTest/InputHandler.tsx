@@ -10,7 +10,6 @@ export const InputHandler = () => {
     words,
     typedWords,
     setTypedWords,
-    accuracyMetrics,
     setAccuracyMetrics,
   } = useTypingTest();
 

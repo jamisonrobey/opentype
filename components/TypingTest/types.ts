@@ -24,6 +24,5 @@ export type GamePhase = "notStarted" | "inProgress" | "over";
 export interface AccuracyMetrics {
   correct: number;
   total: number;
-  wpmOverTime: number[];
-  rawWpmOverTime: number[];
+  chartData: { name: string; wpm: number; raw: number }[];
 }

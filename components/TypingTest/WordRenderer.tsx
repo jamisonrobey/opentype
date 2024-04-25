@@ -3,18 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import { useTypingTest } from "../context/TypingTestContext";
 import { InputHandler } from "./InputHandler";
 export const WordRenderer = () => {
-  const { words, typedWords, userInput, setWords, resetTest } = useTypingTest();
+  const { words, typedWords, userInput } = useTypingTest();
   const [fadeClass, setFadeClass] = useState("");
-
-  const testFetch = () => {
-    setFadeClass("opacity-0 transition-all ");
-    fetch("/api/words?lang=english-1k&numWords=50")
-      .then((res) => res.json())
-      .then((res) => {
-        setWords(res.words);
-      });
-    resetTest();
-  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,25 +44,23 @@ export const WordRenderer = () => {
       return "text-[var(--text-color)]";
     }
   };
-
   return (
     <div
       className={`text-3xl w-4/6 mb-4 h-44 space-y-4 overflow-auto no-scrollbar relative ${fadeClass}`}
     >
       {words.map((word, wordIndex) => (
         <span key={wordIndex} className={`inline-block mr-6 `}>
-          <span>
-            {word.split("").map((char, charIndex) => (
-              <span
-                className={`${getCursorStyling(
-                  wordIndex,
-                  charIndex
-                )} ${getCharacterStyling(wordIndex, charIndex, char)}`}
-              >
-                {char}
-              </span>
-            ))}
-          </span>
+          {word.split("").map((char, charIndex) => (
+            <span
+              key={charIndex}
+              className={`${getCursorStyling(
+                wordIndex,
+                charIndex
+              )} ${getCharacterStyling(wordIndex, charIndex, char)}`}
+            >
+              {char}
+            </span>
+          ))}
         </span>
       ))}
     </div>

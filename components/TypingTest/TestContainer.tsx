@@ -4,14 +4,14 @@ import { IncludePuncNums } from "./types";
 import { db } from "@/lib/db";
 import { sql } from "drizzle-orm";
 import { englishWords1kTable } from "@/lib/schema";
-import { TypingTestContainer } from "./TypingTestContainer";
+import { Test } from "./Test";
 import { ModeSelector } from "../ModeSelector/ModeSelector";
 import ThemeSwitch from "../ThemeSwitcher/ThemeSwitch";
 const initialGameMode = "time";
 const initialPuncNums: IncludePuncNums = [];
 const initialLanguage = "english-1k";
 
-export const TypingTest = async ({}) => {
+export const TestContainer = async ({}) => {
   const duration = getDefaultLengthForMode(initialGameMode);
   const wordsQueryResult = await db
     .select({ words: englishWords1kTable })
@@ -29,7 +29,7 @@ export const TypingTest = async ({}) => {
       initialWords={words}
     >
       <ModeSelector />
-      <TypingTestContainer />
+      <Test />
       <ThemeSwitch />
     </TypingTestProvider>
   );

@@ -15,7 +15,7 @@ const themes: ThemeType[] = [
     className: "serika-dark",
     colors: {
       bgColor: "#323437",
-      accentColor: "#ffb454",
+      accentColor: "#e2b714",
       titleColor: "#e2e2e3",
       textColor: "#646669",
       borderColor: "#1e1f21",

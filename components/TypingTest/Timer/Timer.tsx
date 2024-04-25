@@ -1,5 +1,5 @@
 "use client";
-import { useTypingTest } from "../context/TypingTestContext";
+import { useTypingTest } from "@/components/context/TypingTestContext";
 import { TimeModeTimer } from "./Timers/TimeModeTimer";
 import { WordsModeTimer } from "./Timers/WordsModeTimer";
 export const Timer = () => {
