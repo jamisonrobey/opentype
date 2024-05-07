@@ -11,7 +11,7 @@ export const Test = () => {
       <Results />
     </div>
   ) : (
-    <div className="flex flex-col items-center justify-center flex-grow">
+    <div className="flex w-full flex-col items-center justify-center flex-grow">
       <Timer />
       <WordRenderer />
       <InputHandler />

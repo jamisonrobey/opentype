@@ -30,3 +30,38 @@ export const englishWords10kTable = pgTable("english_words_1k", {
   rank: integer("rank").primaryKey(),
   word: text("word").notNull(),
 });
+
+export const englishQuoteAll = pgTable("english_quotes_all", {
+  id: integer("id").primaryKey(),
+  text: text("text").notNull(),
+  source: text("source").notNull(),
+  length: integer("length").notNull(),
+});
+
+export const englishQuoteSmall = pgTable("english_quotes_small", {
+  id: integer("id").primaryKey(),
+  text: text("text").notNull(),
+  source: text("source").notNull(),
+  length: integer("length").notNull(),
+});
+
+export const englishQuoteMedium = pgTable("english_quotes_medium", {
+  id: integer("id").primaryKey(),
+  text: text("text").notNull(),
+  source: text("source").notNull(),
+  length: integer("length").notNull(),
+});
+
+export const englishQuoteLarge = pgTable("english_quotes_large", {
+  id: integer("id").primaryKey(),
+  text: text("text").notNull(),
+  source: text("source").notNull(),
+  length: integer("length").notNull(),
+});
+
+export const englishQuoteExtraLarge = pgTable("english_quotes_extra_large", {
+  id: integer("id").primaryKey(),
+  text: text("text").notNull(),
+  source: text("source").notNull(),
+  length: integer("length").notNull(),
+});

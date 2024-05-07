@@ -3,6 +3,8 @@ import { useTypingTest } from "@/components/context/TypingTestContext";
 import { useEffect } from "react";
 export const WordsModeTimer = () => {
   const {
+    words,
+    gameMode,
     gamePhase,
     elapsedTime,
     setGamePhase,
@@ -14,6 +16,7 @@ export const WordsModeTimer = () => {
   } = useTypingTest();
 
   useEffect(() => {
+    if (gameMode !== "words") return;
     let timer: NodeJS.Timeout;
     if (gamePhase == "inProgress") {
       timer = setInterval(() => {
@@ -34,7 +37,9 @@ export const WordsModeTimer = () => {
   }, [typedWords, duration]);
   return (
     <>
-      {typedWords.length}/{duration}
+      {gameMode == "words" || gameMode == "time"
+        ? `${typedWords.length}/${duration}`
+        : `${typedWords.length}/${words.length}`}
     </>
   );
 };

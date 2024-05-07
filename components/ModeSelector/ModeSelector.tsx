@@ -6,27 +6,28 @@ import { WordsTimeQuoteSelector } from "./selectors/GameModeSelector";
 import { PunctuationNumbersSelector } from "./selectors/IncludePuncNumSelector";
 import { getDefaultLengthForMode } from "@/utils/getDefaultDuration";
 import { LengthSelector } from "./selectors/DurationSelector";
-
+import { useEffect } from "react";
+import { Gaegu } from "next/font/google";
 interface WordsResponse {
   words: string[];
 }
 
 export const ModeSelector = () => {
-  const { setIncludePuncNums, gamePhase, setGameMode, setDuration, resetTest } =
+  const { gameMode, setIncludePuncNums, gamePhase, setDuration, resetTest } =
     useTypingTest();
 
   const [showPunctuationNumbers, setShowPunctuationNumbers] = useState(true);
-  const handleModeChange = (selected: GameMode) => {
-    setGameMode(selected);
-    setDuration(getDefaultLengthForMode(selected));
+
+  useEffect(() => {
+    setDuration(getDefaultLengthForMode(gameMode));
     resetTest();
-    if (selected === "quote") {
+    if (gameMode === "quote") {
       setShowPunctuationNumbers(false);
       setIncludePuncNums([]);
     } else {
       setShowPunctuationNumbers(true);
     }
-  };
+  }, [gameMode]);
 
   return (
     <div
@@ -57,9 +58,9 @@ export const ModeSelector = () => {
               : "w-0 mx-0 bg-[var(--darkAccent-color)] h-2/3 transition-all duration-75 ease-linear"
           }`}
         ></div>
-        <div className="flex-grow">
-          <WordsTimeQuoteSelector onChange={handleModeChange} />
-        </div>
+        <form className="flex-grow">
+          <WordsTimeQuoteSelector />
+        </form>
         <div className="w-[3px] mx-4 bg-[var(--darkAccent-color)] h-2/3"></div>
         <div className="flex-grow">
           <LengthSelector />

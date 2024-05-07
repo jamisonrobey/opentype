@@ -1,13 +1,18 @@
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { Duration } from "@/components/TypingTest/types";
+import { Duration, WordsModeDuration } from "@/components/TypingTest/types";
 import { useTypingTest } from "@/components/context/TypingTestContext";
 
 export const LengthSelector: React.FC = () => {
-  const { gameMode, duration, setDuration } = useTypingTest();
+  const { setWords, gameMode, duration, setDuration } = useTypingTest();
 
   const handleChange = (value: string) => {
+    if (duration == value) return;
     if (gameMode === "quote") {
       setDuration(value as Duration);
+      fetch(`/api/getQuotes?duration=${value}`)
+        .then((res) => res.json())
+        .then((json) => json.words[0].text)
+        .then((text) => setWords(text.split(" ")));
     } else if (gameMode == "time") {
       setDuration(parseInt(value, 10) as Duration);
     } else {
@@ -23,6 +28,7 @@ export const LengthSelector: React.FC = () => {
         key={length}
         className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex animate-fade-in items-center space-x-2"
         value={length.toString()}
+        disabled={length == duration}
       >
         {length}
       </ToggleGroup.Item>
@@ -33,20 +39,24 @@ export const LengthSelector: React.FC = () => {
         key={length}
         className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 animate-fade-in flex items-center space-x-2"
         value={length.toString()}
+        disabled={length == duration}
       >
         {length}
       </ToggleGroup.Item>
     ));
   } else if (gameMode === "quote") {
-    lengthOptions = ["all", "short", "medium", "long"].map((length) => (
-      <ToggleGroup.Item
-        key={length}
-        className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex animate-fade-in items-center space-x-2"
-        value={length}
-      >
-        {length}
-      </ToggleGroup.Item>
-    ));
+    lengthOptions = ["all", "short", "medium", "long", "thicc"].map(
+      (length) => (
+        <ToggleGroup.Item
+          key={length}
+          className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex animate-fade-in items-center space-x-2"
+          value={length}
+          disabled={length == duration}
+        >
+          {length}
+        </ToggleGroup.Item>
+      )
+    );
   }
 
   return (

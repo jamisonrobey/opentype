@@ -7,7 +7,7 @@ export const getDefaultLengthForMode = (mode: GameMode) => {
     case "time":
       return 15;
     case "quote":
-      return 10;
+      return "all";
     default:
       return 10;
   }

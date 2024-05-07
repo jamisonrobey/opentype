@@ -3,18 +3,18 @@ import { GameMode } from "@/components/TypingTest/types";
 import { TextIcon, CountdownTimerIcon, QuoteIcon } from "@radix-ui/react-icons";
 import { useTypingTest } from "@/components/context/TypingTestContext";
 
-interface GameModeSelectorProps {
-  onChange: (selected: GameMode) => void;
-}
-
-export const WordsTimeQuoteSelector: React.FC<GameModeSelectorProps> = ({
-  onChange,
-}) => {
-  const { gameMode, setGameMode } = useTypingTest();
+export const WordsTimeQuoteSelector = () => {
+  const { gameMode, setWords, setGameMode } = useTypingTest();
 
   const handleChange = (value: GameMode) => {
     setGameMode(value);
-    onChange(value);
+    if (value === "quote") {
+      fetch("/api/getQuotes?duration=short")
+        .then((res) => res.json())
+        .then((json) => json.words[0].text)
+        .then((text) => setWords(text.split(" ")));
+    } else {
+    }
   };
 
   return (

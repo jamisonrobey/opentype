@@ -3,6 +3,7 @@ import { useTypingTest } from "@/components/context/TypingTestContext";
 import { useEffect } from "react";
 export const TimeModeTimer = () => {
   const {
+    gameMode,
     elapsedTime,
     updateAccuracyMetrics,
     setElapsedTime,
@@ -12,6 +13,7 @@ export const TimeModeTimer = () => {
     resetTest,
   } = useTypingTest();
   useEffect(() => {
+    if (gameMode !== "time") return;
     let timer;
     // @ts-ignore
     if (gamePhase == "inProgress") {
