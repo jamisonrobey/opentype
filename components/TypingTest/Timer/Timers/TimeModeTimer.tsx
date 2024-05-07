@@ -21,7 +21,7 @@ export const TimeModeTimer = () => {
       }, 1000);
     }
     // @ts-ignore
-    if (elapsedTime == duration) {
+    if (elapsedTime == duration + 1) {
       clearTimeout(timer);
       resetTest();
       setGamePhase("over");

@@ -46,7 +46,6 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
 
   const resetTest = () => {
     setUserInput("");
-    setTypedWords([]);
   };
 
   const updateAccuracyMetrics = () => {
