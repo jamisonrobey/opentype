@@ -4,7 +4,7 @@ import { TimeModeTimer } from "./Timers/TimeModeTimer";
 import { WordsModeTimer } from "./Timers/WordsModeTimer";
 import { QuoteModeTimer } from "./Timers/QuoteModeTimer";
 export const Timer = () => {
-  const { gamePhase, gameMode } = useTypingTest();
+  const { gamePhase, fadeClass, gameMode } = useTypingTest();
   const getTimer = () => {
     switch (gameMode) {
       case "time":
@@ -17,9 +17,8 @@ export const Timer = () => {
   };
   return (
     <p
-      className={`w-4/6 text-3xl text-[var(--accent-color)] x${
-        gamePhase == "inProgress" ? "visible" : "invisible"
-      }`}
+      className={`duration-300 w-4/6 text-3xl text-[var(--accent-color)] ${fadeClass}
+      `}
     >
       {getTimer()}
     </p>

@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext } from "react";
-import { ThemeType } from "../ThemeSwitcher/Themes";
+import { ThemeType } from "../ThemeSelector/themes";
 import {
   GameMode,
   IncludePuncNums,
@@ -9,6 +9,7 @@ import {
   AccuracyMetrics,
   GamePhase,
 } from "../TypingTest/types";
+import { LanguageOptionType } from "../LangageSelector/languages";
 
 export interface TypingTestContextProps {
   theme: ThemeType;
@@ -23,9 +24,9 @@ export interface TypingTestContextProps {
   setWords: React.Dispatch<React.SetStateAction<string[]>>;
   fadeClass: string;
   fadeTextOut: () => void;
-  fadeTextIn: (text: string) => void;
-  language: Language;
-  setLanguage: React.Dispatch<React.SetStateAction<Language>>;
+  fadeTextIn: (text: string[]) => void;
+  language: LanguageOptionType;
+  setLanguage: React.Dispatch<React.SetStateAction<LanguageOptionType>>;
   gamePhase: GamePhase;
   setGamePhase: React.Dispatch<React.SetStateAction<GamePhase>>;
   elapsedTime: number;

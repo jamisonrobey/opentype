@@ -1,5 +1,7 @@
 "use client";
-import themes, { ThemeType } from "../ThemeSwitcher/Themes";
+import { english10k, english1k } from "@/lib/schema";
+import { LanguageOptionType } from "../LangageSelector/languages";
+import themes, { ThemeType } from "../ThemeSelector/themes";
 import {
   IncludePuncNums,
   GameMode,
@@ -16,7 +18,6 @@ interface TypingTestProviderProps {
   initialPuncNums: IncludePuncNums;
   initialGameMode: GameMode;
   initialDuration: Duration;
-  initialLanguage: Language;
   initialWords: string[];
 }
 
@@ -25,14 +26,16 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   initialPuncNums,
   initialGameMode,
   initialDuration,
-  initialLanguage,
   initialWords,
 }) => {
   const [theme, setTheme] = useState<ThemeType>(themes[0]);
   const [includePuncNums, setIncludePuncNums] = useState(initialPuncNums);
   const [gameMode, setGameMode] = useState(initialGameMode);
   const [duration, setDuration] = useState(initialDuration);
-  const [language, setLanguage] = useState(initialLanguage);
+  const [language, setLanguage] = useState<LanguageOptionType>({
+    language: "english 1k",
+    table: english1k,
+  });
   const [words, setWords] = useState<string[]>(initialWords);
   const [fadeClass, setFadeClass] = useState("");
   const [userInput, setUserInput] = useState("");
@@ -53,12 +56,19 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setFadeClass("opacity-0 transition-all duration-150");
   };
 
-  const fadeTextIn = (text: string) => {
-    const newWords = text.split(" ");
-    setTimeout(() => {
-      setWords(newWords);
-      setFadeClass("opacity-100 transition-all ease-linear duration-150");
-    }, 300);
+  const fadeTextIn = (words: string[], duration?: number) => {
+    if (typeof duration !== "undefined") {
+      setTimeout(() => {
+        setWords(words);
+        setDuration(duration as Duration);
+        setFadeClass("opacity-100 transition-all ease-linear duration-150");
+      }, 300);
+    } else {
+      setTimeout(() => {
+        setWords(words);
+        setFadeClass("opacity-100 transition-all ease-linear duration-150");
+      }, 300);
+    }
   };
 
   const updateAccuracyMetrics = () => {

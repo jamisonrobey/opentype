@@ -1,4 +1,4 @@
-import { ThemeType } from "./Themes";
+import { ThemeType } from "./themes";
 interface ThemeProps {
   theme: ThemeType;
   selected: boolean;

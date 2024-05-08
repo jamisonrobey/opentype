@@ -13,14 +13,28 @@ export const LengthSelector: React.FC = () => {
       setDuration(value as Duration);
       fetch(`/api/getQuotes?duration=${value}`)
         .then((res) => res.json())
-        .then((json) => json.words[0].text)
+        .then((json) => json.words)
         .then((text) => {
           fadeTextIn(text);
         });
     } else if (gameMode == "time") {
-      setDuration(parseInt(value, 10) as Duration);
+      fadeTextOut();
+      fetch(`/api/getQuotes?duration=${50}`)
+        .then((res) => res.json())
+        .then((json) => json.words)
+        .then((text) => {
+          // @ts-ignore
+          fadeTextIn(text, parseInt(value, 10));
+        });
     } else {
-      setDuration(parseInt(value, 10) as Duration);
+      fadeTextOut();
+      fetch(`/api/getQuotes?duration=${value}`)
+        .then((res) => res.json())
+        .then((json) => json.words)
+        .then((text) => {
+          // @ts-ignore
+          fadeTextIn(text, parseInt(value, 10));
+        });
     }
   };
 

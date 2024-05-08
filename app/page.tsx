@@ -1,4 +1,4 @@
-import ThemeSwitch from "@/components/ThemeSwitcher/ThemeSwitch";
+import ThemeSelector from "@/components/ThemeSelector/ThemeSelector";
 import { TestContainer } from "@/components/TypingTest/TestContainer";
 export default async function Home() {
   return (

@@ -2,9 +2,9 @@ import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { GameMode } from "@/components/TypingTest/types";
 import { TextIcon, CountdownTimerIcon, QuoteIcon } from "@radix-ui/react-icons";
 import { useTypingTest } from "@/components/context/TypingTestContext";
-
+import { getDefaultLengthForMode } from "@/utils/getDefaultDuration";
 export const WordsTimeQuoteSelector = () => {
-  const { gameMode, fadeTextOut, fadeTextIn, setWords, setGameMode } =
+  const { gameMode, fadeTextOut, fadeTextIn, duration, setGameMode, language } =
     useTypingTest();
 
   const handleChange = (value: GameMode) => {
@@ -13,11 +13,24 @@ export const WordsTimeQuoteSelector = () => {
     if (value === "quote") {
       fetch("/api/getQuotes?duration=short")
         .then((res) => res.json())
-        .then((json) => json.words[0].text)
-        .then((text) => {
-          fadeTextIn(text);
+        .then((json) => json.words)
+        .then((words) => {
+          fadeTextIn(words);
         });
     } else if (value === "words") {
+      fetch(
+        `/api/getWords?gameMode=${value}&duration=${10}&{gameMode}&language=${
+          language.language
+        }`
+      )
+        .then((res) => res.json())
+        .then((json) => json.words)
+        .then((text) => fadeTextIn(text));
+    } else {
+      fetch(`/api/getWords?gameMode=${value}&language=${language.language}`)
+        .then((res) => res.json())
+        .then((json) => json.words)
+        .then((text) => fadeTextIn(text));
     }
   };
 

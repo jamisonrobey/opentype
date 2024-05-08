@@ -32,11 +32,13 @@ export async function GET(request: Request) {
   const duration = searchParams.get("duration") as QuoteModeDuration;
   const table = getTable(duration);
   try {
-    const words = await db
-      .select()
+    const wordsResponse = await db
+      .select({ text: table.text })
       .from(table)
       .orderBy(sql`RANDOM()`)
       .limit(1);
+
+    const words = wordsResponse[0].text.split(" ");
     return Response.json({ words }, { status: 200 });
   } catch (err) {
     return Response.json(
