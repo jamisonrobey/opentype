@@ -117,6 +117,6 @@ export const spanish1k = pgTable("spanish_1k", {
 });
 
 export const spanish10k = pgTable("spanish_10k", {
-  rank: integer("rank").primaryKey()st,
+  rank: integer("rank").primaryKey(),
   word: text("word").notNull(),
 });
