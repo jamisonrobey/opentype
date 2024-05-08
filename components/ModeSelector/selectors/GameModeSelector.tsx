@@ -4,20 +4,18 @@ import { TextIcon, CountdownTimerIcon, QuoteIcon } from "@radix-ui/react-icons";
 import { useTypingTest } from "@/components/context/TypingTestContext";
 
 export const WordsTimeQuoteSelector = () => {
-  const { gameMode, setFadeClass, setWords, setGameMode } = useTypingTest();
+  const { gameMode, fadeTextOut, fadeTextIn, setWords, setGameMode } =
+    useTypingTest();
 
   const handleChange = (value: GameMode) => {
     setGameMode(value);
-    setFadeClass("opacity-0 transition-all duration-150");
+    fadeTextOut();
     if (value === "quote") {
       fetch("/api/getQuotes?duration=short")
         .then((res) => res.json())
         .then((json) => json.words[0].text)
         .then((text) => {
-          setTimeout(() => {
-            setWords(text.split(" "));
-            setFadeClass("opacity-100 transition-all ease-linear duration-150");
-          }, 300);
+          fadeTextIn(text);
         });
     } else if (value === "words") {
     }

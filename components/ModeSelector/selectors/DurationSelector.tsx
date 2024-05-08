@@ -3,22 +3,19 @@ import { Duration, WordsModeDuration } from "@/components/TypingTest/types";
 import { useTypingTest } from "@/components/context/TypingTestContext";
 
 export const LengthSelector: React.FC = () => {
-  const { setWords, setFadeClass, gameMode, duration, setDuration } =
+  const { setWords, fadeTextOut, fadeTextIn, gameMode, duration, setDuration } =
     useTypingTest();
 
   const handleChange = (value: string) => {
     if (duration == value) return;
     if (gameMode === "quote") {
-      setFadeClass("opacity-0 transition-all duration-150");
+      fadeTextOut();
       setDuration(value as Duration);
       fetch(`/api/getQuotes?duration=${value}`)
         .then((res) => res.json())
         .then((json) => json.words[0].text)
         .then((text) => {
-          setTimeout(() => {
-            setWords(text.split(" "));
-            setFadeClass("opacity-100 transition-all ease-linear duration-150");
-          }, 300);
+          fadeTextIn(text);
         });
     } else if (gameMode == "time") {
       setDuration(parseInt(value, 10) as Duration);

@@ -49,6 +49,18 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setUserInput("");
   };
 
+  const fadeTextOut = () => {
+    setFadeClass("opacity-0 transition-all duration-150");
+  };
+
+  const fadeTextIn = (text: string) => {
+    const newWords = text.split(" ");
+    setTimeout(() => {
+      setWords(newWords);
+      setFadeClass("opacity-100 transition-all ease-linear duration-150");
+    }, 300);
+  };
+
   const updateAccuracyMetrics = () => {
     if (typedWords.length == 0) return;
     const { correct, total } = accuracyMetrics;
@@ -77,7 +89,8 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     words,
     setWords,
     fadeClass,
-    setFadeClass,
+    fadeTextOut,
+    fadeTextIn,
     gamePhase,
     setGamePhase,
     elapsedTime,

@@ -22,7 +22,8 @@ export interface TypingTestContextProps {
   words: string[];
   setWords: React.Dispatch<React.SetStateAction<string[]>>;
   fadeClass: string;
-  setFadeClass: React.Dispatch<React.SetStateAction<string>>;
+  fadeTextOut: () => void;
+  fadeTextIn: (text: string) => void;
   language: Language;
   setLanguage: React.Dispatch<React.SetStateAction<Language>>;
   gamePhase: GamePhase;
