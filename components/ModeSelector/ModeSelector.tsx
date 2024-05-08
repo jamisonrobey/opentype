@@ -31,7 +31,7 @@ export const ModeSelector = () => {
 
   return (
     <div
-      className={`w-full flex justify-center ${
+      className={`w-full mt-8 flex justify-center ${
         gamePhase == "over" ? "invisible" : "visible"
       }`}
     >
@@ -41,12 +41,12 @@ export const ModeSelector = () => {
         <div
           className={`${
             showPunctuationNumbers
-              ? "flex-grow opacity-100 transition-opacity duration-200 ease-linear"
-              : "flex-grow-0 opacity-0 transition-opacity duration-200 ease-linear"
+              ? "flex-grow opacity-100 transition-opacity duration-1000 ease-linear"
+              : "flex-grow-0 opacity-0 transition-opacity duration-1000 ease-linear"
           } ${
             showPunctuationNumbers
-              ? "w-auto transition-width duration-300 ease-linear delay-200"
-              : "w-0 transition-width duration-300 ease-linear"
+              ? "w-auto transition-width duration-1000 ease-linear delay-200"
+              : "w-0 transition-width duration-1000 ease-linear"
           }`}
         >
           <PunctuationNumbersSelector />
@@ -54,8 +54,8 @@ export const ModeSelector = () => {
         <div
           className={`${
             showPunctuationNumbers
-              ? "w-[3px] mx-4 bg-[var(--darkAccent-color)] h-2/3 transition-all duration-75 ease-linear"
-              : "w-0 mx-0 bg-[var(--darkAccent-color)] h-2/3 transition-all duration-75 ease-linear"
+              ? "w-[3px] mx-4 bg-[var(--darkAccent-color)] h-2/3 transition-all duration-150 ease-linear"
+              : "w-0 mx-0 bg-[var(--darkAccent-color)] h-2/3 transition-all duration-150 ease-linear"
           }`}
         ></div>
         <form className="flex-grow">

@@ -4,13 +4,6 @@ import { useTypingTest } from "../context/TypingTestContext";
 import { InputHandler } from "./InputHandler";
 export const WordRenderer = () => {
   const { words, typedWords, userInput } = useTypingTest();
-  const [fadeClass, setFadeClass] = useState("");
-
-  useEffect(() => {
-    setTimeout(() => {
-      setFadeClass("opacity-100 transition-all ");
-    }, 300);
-  }, [words]);
 
   const getCursorStyling = (wordIndex: number, charIndex: number) => {
     if (typedWords.length != wordIndex) return;
@@ -46,7 +39,7 @@ export const WordRenderer = () => {
   };
   return (
     <div
-      className={`text-3xl w-4/6 mb-4 h-44 space-y-4 overflow-auto no-scrollbar relative ${fadeClass}`}
+      className={`text-3xl w-4/6 mb-4 h-44 space-y-4 overflow-auto no-scrollbar relative `}
     >
       {words.map((word, wordIndex) => (
         <span key={wordIndex} className={`inline-block mr-6 `}>

@@ -34,6 +34,7 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
   const [duration, setDuration] = useState(initialDuration);
   const [language, setLanguage] = useState(initialLanguage);
   const [words, setWords] = useState<string[]>(initialWords);
+  const [fadeClass, setFadeClass] = useState("");
   const [userInput, setUserInput] = useState("");
   const [typedWords, setTypedWords] = useState<string[]>([]);
   const [accuracyMetrics, setAccuracyMetrics] = useState<AccuracyMetrics>({
@@ -75,6 +76,8 @@ export const TypingTestProvider: React.FC<TypingTestProviderProps> = ({
     setLanguage,
     words,
     setWords,
+    fadeClass,
+    setFadeClass,
     gamePhase,
     setGamePhase,
     elapsedTime,

@@ -3,16 +3,23 @@ import { Duration, WordsModeDuration } from "@/components/TypingTest/types";
 import { useTypingTest } from "@/components/context/TypingTestContext";
 
 export const LengthSelector: React.FC = () => {
-  const { setWords, gameMode, duration, setDuration } = useTypingTest();
+  const { setWords, setFadeClass, gameMode, duration, setDuration } =
+    useTypingTest();
 
   const handleChange = (value: string) => {
     if (duration == value) return;
     if (gameMode === "quote") {
+      setFadeClass("opacity-0 transition-all duration-150");
       setDuration(value as Duration);
       fetch(`/api/getQuotes?duration=${value}`)
         .then((res) => res.json())
         .then((json) => json.words[0].text)
-        .then((text) => setWords(text.split(" ")));
+        .then((text) => {
+          setTimeout(() => {
+            setWords(text.split(" "));
+            setFadeClass("opacity-100 transition-all ease-linear duration-150");
+          }, 300);
+        });
     } else if (gameMode == "time") {
       setDuration(parseInt(value, 10) as Duration);
     } else {
@@ -49,7 +56,7 @@ export const LengthSelector: React.FC = () => {
       (length) => (
         <ToggleGroup.Item
           key={length}
-          className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex animate-fade-in items-center space-x-2"
+          className="hover:text-[var(--title-color)] data-[state='on']:text-[var(--accent-color)] duration-75 flex items-center space-x-2"
           value={length}
           disabled={length == duration}
         >
@@ -61,7 +68,7 @@ export const LengthSelector: React.FC = () => {
 
   return (
     <ToggleGroup.Root
-      className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 items-center justify-evenly sm:space-x-4"
+      className="flex flex-col transition-all sm:flex-row space-y-4 sm:space-y-0 items-center justify-evenly sm:space-x-4"
       aria-label="Length"
       type="single"
       value={duration.toString()}

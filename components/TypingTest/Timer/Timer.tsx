@@ -2,6 +2,7 @@
 import { useTypingTest } from "@/components/context/TypingTestContext";
 import { TimeModeTimer } from "./Timers/TimeModeTimer";
 import { WordsModeTimer } from "./Timers/WordsModeTimer";
+import { QuoteModeTimer } from "./Timers/QuoteModeTimer";
 export const Timer = () => {
   const { gamePhase, gameMode } = useTypingTest();
   const getTimer = () => {
@@ -9,8 +10,9 @@ export const Timer = () => {
       case "time":
         return <TimeModeTimer />;
       case "words":
-      case "quote":
         return <WordsModeTimer />;
+      case "quote":
+        return <QuoteModeTimer />;
     }
   };
   return (
